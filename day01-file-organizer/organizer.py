@@ -10,6 +10,7 @@ FILE_TYPES = {
     "Archives": [".zip", ".rar", ".tar", ".gz"],
     "Code": [".py", ".js", ".html", ".css", ".java", ".cpp"],
 }
+
 def get_file_category(extension):
     """Returns the category of a file based on its extension."""
     for category, extensions in FILE_TYPES.items():
@@ -26,16 +27,25 @@ def get_files(folder_path):
             files.append(item_path)
     return files
 
-
 def organize_files(folder_path):
     """Moves files into categorized subfolders."""
     files = get_files(folder_path)
-    
     for file_path in files:
         extension = os.path.splitext(file_path)[1]
         category = get_file_category(extension)
-        
         destination_folder = os.path.join(folder_path, category)
         os.makedirs(destination_folder, exist_ok=True)
-        
         shutil.move(file_path, destination_folder)
+
+def main():
+    """Main function to run the file organizer."""
+    folder_path = input("Enter the folder path to organize: ")
+    if not os.path.exists(folder_path):
+        print("❌ Error: Folder not found!")
+        return
+    print(f"🔍 Scanning folder: {folder_path}")
+    organize_files(folder_path)
+    print("✅ Files organized successfully!")
+
+if __name__ == "__main__":
+    main()
