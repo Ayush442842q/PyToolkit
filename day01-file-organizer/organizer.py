@@ -1,5 +1,8 @@
 import os
 import shutil
+import logging
+
+
 
 # File type categories
 FILE_TYPES = {
@@ -10,6 +13,14 @@ FILE_TYPES = {
     "Archives": [".zip", ".rar", ".tar", ".gz"],
     "Code": [".py", ".js", ".html", ".css", ".java", ".cpp"],
 }
+# Setup logging
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(message)s"
+)
+
+
+
 
 def get_file_category(extension):
     """Returns the category of a file based on its extension."""
