@@ -16,3 +16,12 @@ def get_file_category(extension):
         if extension.lower() in extensions:
             return category
     return "Others"
+
+def get_files(folder_path):
+    """Returns a list of all files in the given folder."""
+    files = []
+    for item in os.listdir(folder_path):
+        item_path = os.path.join(folder_path, item)
+        if os.path.isfile(item_path):
+            files.append(item_path)
+    return files
