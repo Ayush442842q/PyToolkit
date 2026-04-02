@@ -12,3 +12,12 @@ def test_get_file_category():
     print("✅ test_get_file_category passed!")
 
 test_get_file_category()
+
+
+def test_get_file_category_case_insensitive():
+    assert get_file_category(".JPG") == "Images"
+    assert get_file_category(".MP4") == "Videos"
+    assert get_file_category(".PDF") == "Documents"
+    print("✅ test_case_insensitive passed!")
+
+test_get_file_category_case_insensitive()
