@@ -2,7 +2,11 @@ import os
 import shutil
 import logging
 
-
+# Setup logging
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(message)s"
+)
 
 # File type categories
 FILE_TYPES = {
@@ -13,14 +17,6 @@ FILE_TYPES = {
     "Archives": [".zip", ".rar", ".tar", ".gz"],
     "Code": [".py", ".js", ".html", ".css", ".java", ".cpp"],
 }
-# Setup logging
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(message)s"
-)
-
-
-
 
 def get_file_category(extension):
     """Returns the category of a file based on its extension."""
@@ -47,6 +43,7 @@ def organize_files(folder_path):
         destination_folder = os.path.join(folder_path, category)
         os.makedirs(destination_folder, exist_ok=True)
         shutil.move(file_path, destination_folder)
+        logging.info(f"Moved {os.path.basename(file_path)} → {category}")
 
 def get_file_count(folder_path):
     """Returns count of files before organizing."""
@@ -56,11 +53,11 @@ def get_file_count(folder_path):
 def main():
     """Main function to run the file organizer."""
     folder_path = input("Enter the folder path to organize: ")
-    
+
     if not os.path.exists(folder_path):
         print("❌ Error: Folder not found!")
         return
-    
+
     count = get_file_count(folder_path)
     print(f"🔍 Found {count} files to organize...")
     organize_files(folder_path)
@@ -68,5 +65,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    
-    
