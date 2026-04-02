@@ -37,6 +37,7 @@ def get_files(folder_path):
 def organize_files(folder_path):
     """Moves files into categorized subfolders."""
     files = get_files(folder_path)
+    summary = {}
     for file_path in files:
         extension = os.path.splitext(file_path)[1]
         category = get_file_category(extension)
@@ -44,6 +45,8 @@ def organize_files(folder_path):
         os.makedirs(destination_folder, exist_ok=True)
         shutil.move(file_path, destination_folder)
         logging.info(f"Moved {os.path.basename(file_path)} → {category}")
+        summary[category] = summary.get(category, 0) + 1
+    return summary
 
 def get_file_count(folder_path):
     """Returns count of files before organizing."""
@@ -60,12 +63,11 @@ def main():
 
     count = get_file_count(folder_path)
     print(f"🔍 Found {count} files to organize...")
-    organize_files(folder_path)
+    summary = organize_files(folder_path)
     print(f"✅ Successfully organized {count} files!")
+    print("\n📊 Summary:")
+    for category, total in summary.items():
+        print(f"   {category}: {total} files")
 
 if __name__ == "__main__":
     main()
-    
-    
-    
-    
