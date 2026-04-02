@@ -21,3 +21,12 @@ def test_get_file_category_case_insensitive():
     print("✅ test_case_insensitive passed!")
 
 test_get_file_category_case_insensitive()
+
+
+def test_get_file_category_archives():
+    assert get_file_category(".zip") == "Archives"
+    assert get_file_category(".rar") == "Archives"
+    assert get_file_category(".tar") == "Archives"
+    print("✅ test_archives_category passed!")
+
+test_get_file_category_archives()
