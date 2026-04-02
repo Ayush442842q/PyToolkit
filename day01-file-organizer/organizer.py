@@ -49,3 +49,8 @@ def main():
 
 if __name__ == "__main__":
     main()
+    
+def get_file_count(folder_path):
+    """Returns count of files before organizing."""
+    files = get_files(folder_path)
+    return len(files)
