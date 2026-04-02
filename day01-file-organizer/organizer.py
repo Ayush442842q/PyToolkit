@@ -37,20 +37,25 @@ def organize_files(folder_path):
         os.makedirs(destination_folder, exist_ok=True)
         shutil.move(file_path, destination_folder)
 
-def main():
-    """Main function to run the file organizer."""
-    folder_path = input("Enter the folder path to organize: ")
-    if not os.path.exists(folder_path):
-        print("❌ Error: Folder not found!")
-        return
-    print(f"🔍 Scanning folder: {folder_path}")
-    organize_files(folder_path)
-    print("✅ Files organized successfully!")
-
-if __name__ == "__main__":
-    main()
-    
 def get_file_count(folder_path):
     """Returns count of files before organizing."""
     files = get_files(folder_path)
     return len(files)
+
+def main():
+    """Main function to run the file organizer."""
+    folder_path = input("Enter the folder path to organize: ")
+    
+    if not os.path.exists(folder_path):
+        print("❌ Error: Folder not found!")
+        return
+    
+    count = get_file_count(folder_path)
+    print(f"🔍 Found {count} files to organize...")
+    organize_files(folder_path)
+    print(f"✅ Successfully organized {count} files!")
+
+if __name__ == "__main__":
+    main()
+    
+    
