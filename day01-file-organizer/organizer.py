@@ -25,3 +25,17 @@ def get_files(folder_path):
         if os.path.isfile(item_path):
             files.append(item_path)
     return files
+
+
+def organize_files(folder_path):
+    """Moves files into categorized subfolders."""
+    files = get_files(folder_path)
+    
+    for file_path in files:
+        extension = os.path.splitext(file_path)[1]
+        category = get_file_category(extension)
+        
+        destination_folder = os.path.join(folder_path, category)
+        os.makedirs(destination_folder, exist_ok=True)
+        
+        shutil.move(file_path, destination_folder)
