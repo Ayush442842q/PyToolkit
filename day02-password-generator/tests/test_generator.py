@@ -23,3 +23,10 @@ def test_password_minimum_length():
     print("✅ test_minimum_length passed!")
 
 test_password_minimum_length()
+def test_password_strength_strong():
+    password = generate_password(12, use_upper=True, use_digits=True, use_symbols=True)
+    strength = check_password_strength(password)
+    assert strength == "💪 Strong"
+    print("✅ test_password_strength_strong passed!")
+
+test_password_strength_strong()
