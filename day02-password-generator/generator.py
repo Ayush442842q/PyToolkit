@@ -41,3 +41,24 @@ def check_password_strength(password):
         return "👍 Medium"
     else:
         return "⚠️ Weak"
+def main():
+    """Main function to run the password generator."""
+    print("🔐 Password Generator")
+    print("-" * 30)
+
+    length = int(input("Enter password length (6-128): "))
+    if not validate_length(length):
+        return
+
+    use_upper = input("Include uppercase? (y/n): ").lower() == "y"
+    use_digits = input("Include digits? (y/n): ").lower() == "y"
+    use_symbols = input("Include symbols? (y/n): ").lower() == "y"
+
+    password = generate_password(length, use_upper, use_digits, use_symbols)
+    strength = check_password_strength(password)
+
+    print(f"\n✅ Generated Password: {password}")
+    print(f"💡 Strength: {strength}")
+
+if __name__ == "__main__":
+    main()
