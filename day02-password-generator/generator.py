@@ -62,3 +62,10 @@ def main():
 
 if __name__ == "__main__":
     main()
+def generate_multiple_passwords(count=5, length=12, use_upper=True, use_digits=True, use_symbols=True):
+    """Generates multiple passwords at once."""
+    passwords = []
+    for _ in range(count):
+        password = generate_password(length, use_upper, use_digits, use_symbols)
+        passwords.append(password)
+    return passwords
