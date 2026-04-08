@@ -17,3 +17,9 @@ def test_password_has_digits():
     print("✅ test_password_has_digits passed!")
 
 test_password_has_digits()
+def test_password_minimum_length():
+    result = validate_length(4)
+    assert result == False
+    print("✅ test_minimum_length passed!")
+
+test_password_minimum_length()
