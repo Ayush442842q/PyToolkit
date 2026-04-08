@@ -28,3 +28,16 @@ def validate_length(length):
         print("⚠️ Password too long! Maximum length is 128.")
         return False
     return True
+def check_password_strength(password):
+    """Returns strength of password: Weak, Medium or Strong."""
+    has_upper = any(c in UPPERCASE for c in password)
+    has_digit = any(c in DIGITS for c in password)
+    has_symbol = any(c in SYMBOLS for c in password)
+    length = len(password)
+
+    if length >= 12 and has_upper and has_digit and has_symbol:
+        return "💪 Strong"
+    elif length >= 8 and (has_upper or has_digit):
+        return "👍 Medium"
+    else:
+        return "⚠️ Weak"
