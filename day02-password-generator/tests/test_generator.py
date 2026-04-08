@@ -2,7 +2,7 @@ import sys
 import os
 sys.path.insert(0, os.path.abspath(".."))
 
-from generator import generate_password, validate_length, check_password_strength
+from generator import generate_password, validate_length, check_password_strength, generate_multiple_passwords
 
 def test_password_length():
     password = generate_password(12)
@@ -30,3 +30,9 @@ def test_password_strength_strong():
     print("✅ test_password_strength_strong passed!")
 
 test_password_strength_strong()
+def test_multiple_passwords_count():
+    passwords = generate_multiple_passwords(5)
+    assert len(passwords) == 5
+    print("✅ test_multiple_passwords_count passed!")
+
+test_multiple_passwords_count()
