@@ -10,3 +10,10 @@ def test_password_length():
     print("✅ test_password_length passed!")
 
 test_password_length()
+def test_password_has_digits():
+    password = generate_password(12, use_digits=True, use_symbols=False)
+    has_digit = any(c.isdigit() for c in password)
+    assert has_digit == True
+    print("✅ test_password_has_digits passed!")
+
+test_password_has_digits()
