@@ -19,3 +19,12 @@ def generate_password(length=12, use_upper=True, use_digits=True, use_symbols=Tr
 
     password = "".join(random.choice(characters) for _ in range(length))
     return password
+def validate_length(length):
+    """Validates that password length is between 6 and 128."""
+    if length < 6:
+        print("⚠️ Password too short! Minimum length is 6.")
+        return False
+    if length > 128:
+        print("⚠️ Password too long! Maximum length is 128.")
+        return False
+    return True
