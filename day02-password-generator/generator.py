@@ -53,12 +53,14 @@ def main():
     use_upper = input("Include uppercase? (y/n): ").lower() == "y"
     use_digits = input("Include digits? (y/n): ").lower() == "y"
     use_symbols = input("Include symbols? (y/n): ").lower() == "y"
+    count = int(input("How many passwords to generate? (1-10): "))
 
-    password = generate_password(length, use_upper, use_digits, use_symbols)
-    strength = check_password_strength(password)
+    passwords = generate_multiple_passwords(count, length, use_upper, use_digits, use_symbols)
 
-    print(f"\n✅ Generated Password: {password}")
-    print(f"💡 Strength: {strength}")
+    print("\n✅ Generated Passwords:")
+    for i, password in enumerate(passwords, 1):
+        strength = check_password_strength(password)
+        print(f"  {i}. {password} — {strength}")
 
 if __name__ == "__main__":
     main()
