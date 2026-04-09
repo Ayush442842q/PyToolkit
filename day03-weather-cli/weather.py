@@ -100,3 +100,22 @@ def display_forecast(data):
             print(f"   💧 Humidity   : {humidity}%")
             print(f"   ☁️  Condition  : {description.capitalize()}")
             print("-" * 40)
+def compare_cities(cities):
+    """Compares weather across multiple cities."""
+    print("\n🌍 City Weather Comparison")
+    print("=" * 60)
+    print(f"{'City':<20} {'Temp':>6} {'Humidity':>10} {'Description':<20}")
+    print("-" * 60)
+
+    for city in cities:
+        data = get_weather(city)
+        if data is None:
+            print(f"{city:<20} {'N/A':>6} {'N/A':>10} {'Network error':<20}")
+            continue
+        weather = parse_weather(data)
+        if weather:
+            print(f"{weather['city']:<20} {str(weather['temp']) + '°C':>6} {str(weather['humidity']) + '%':>10} {weather['description'].capitalize():<20}")
+        else:
+            print(f"{city:<20} {'N/A':>6} {'N/A':>10} {'City not found':<20}")
+
+    print("=" * 60)
