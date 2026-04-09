@@ -119,3 +119,31 @@ def compare_cities(cities):
             print(f"{city:<20} {'N/A':>6} {'N/A':>10} {'City not found':<20}")
 
     print("=" * 60)
+def convert_temperature(temp, unit):
+    """Converts temperature between Celsius and Fahrenheit."""
+    if unit.lower() == "f":
+        return round((temp * 9/5) + 32, 1)
+    elif unit.lower() == "c":
+        return round((temp - 32) * 5/9, 1)
+    return temp
+
+def get_weather_with_unit(city, unit="metric"):
+    """Fetches weather data with unit preference (metric/imperial)."""
+    params = {
+        "q": city,
+        "appid": API_KEY,
+        "units": unit
+    }
+    try:
+        response = requests.get(BASE_URL, params=params, timeout=10)
+        response.raise_for_status()
+        return response.json()
+    except requests.exceptions.ConnectionError:
+        print("❌ Network error! Please check your internet connection.")
+        return None
+    except requests.exceptions.Timeout:
+        print("❌ Request timed out! Try again later.")
+        return None
+    except requests.exceptions.RequestException as e:
+        print(f"❌ Something went wrong: {e}")
+        return None
