@@ -1,19 +1,36 @@
 # Changelog
 
-## Day 01 - File Organizer
-- Added file type categories dictionary
-- Added get_file_category function
-- Added get_files function to scan folder
-- Added organize_files core function
-- Added main function and entry point
-- Added logging to track moved files
-- Added summary report after organizing
-- Added unit tests
-## Day 02 - Password Generator
-- Added character sets for password generation
-- Added generate_password core function
-- Added validate_length function
-- Added check_password_strength function
-- Added generate_multiple_passwords function
-- Added main function with user input
-- Added unit tests
+All notable changes to PyToolkit will be documented here.
+
+---
+
+## [Day 03] - Weather CLI 🌤️
+### Added
+- `get_weather(city)` — fetches real-time weather from OpenWeatherMap API
+- `parse_weather(data)` — parses raw API response into clean dictionary
+- `display_weather(weather)` — displays formatted current weather
+- `get_forecast(city)` — fetches 5-day weather forecast
+- `display_forecast(data)` — displays formatted 5-day forecast
+- `compare_cities(cities)` — compares weather across multiple cities
+- `convert_temperature(temp, unit)` — converts between Celsius and Fahrenheit
+- `get_weather_with_unit(city, unit)` — fetches weather with unit preference
+- Error handling for network errors and timeouts
+- Unit tests for parse_weather and invalid city handling
+
+---
+
+## [Day 02] - Password Generator 🔐
+### Added
+- `generate_password()` — generates secure random password
+- `validate_length()` — validates password length
+- `check_password_strength()` — returns Weak/Medium/Strong rating
+- `generate_multiple_passwords()` — generates multiple passwords at once
+
+---
+
+## [Day 01] - File Organizer 📁
+### Added
+- `get_file_category()` — returns category from file extension
+- `get_files()` — scans folder and returns list of files
+- `organize_files()` — moves files into subfolders
+- `get_file_count()` — counts files before organizing
