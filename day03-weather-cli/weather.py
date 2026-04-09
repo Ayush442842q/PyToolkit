@@ -26,7 +26,7 @@ def parse_weather(data):
         "description": data["weather"][0]["description"],
         "wind_speed": data["wind"]["speed"]
     }
-    def display_weather(weather):
+def display_weather(weather):
     """Displays weather data in a nice format."""
     if not weather:
         print("❌ City not found! Please check the city name.")
