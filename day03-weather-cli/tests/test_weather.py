@@ -31,6 +31,22 @@ class TestWeather:
         assert result["humidity"] == 80
         print("✅ test_parse_weather_valid passed!")
 
+    def test_parse_weather_invalid_city(self):
+        """Test parse_weather with invalid city response."""
+        mock_data = {
+            "cod": "404",
+            "message": "city not found"
+        }
+        result = parse_weather(mock_data)
+        assert result is None
+        print("✅ test_parse_weather_invalid_city passed!")
+
+    def test_parse_weather_empty(self):
+        """Test parse_weather with empty data."""
+        result = parse_weather({})
+        assert result is None
+        print("✅ test_parse_weather_empty passed!")
+
     def test_convert_temperature(self):
         """Test temperature conversion."""
         result = convert_temperature(0, "f")
@@ -42,5 +58,7 @@ class TestWeather:
 if __name__ == "__main__":
     t = TestWeather()
     t.test_parse_weather_valid()
+    t.test_parse_weather_invalid_city()
+    t.test_parse_weather_empty()
     t.test_convert_temperature()
     print("\n✅ All tests passed!")
