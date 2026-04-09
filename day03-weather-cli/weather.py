@@ -55,3 +55,24 @@ def main():
 
 if __name__ == "__main__":
     main()
+def get_forecast(city):
+    """Fetches 5-day weather forecast for a given city."""
+    FORECAST_URL = "https://api.openweathermap.org/data/2.5/forecast"
+    params = {
+        "q": city,
+        "appid": API_KEY,
+        "units": "metric"
+    }
+    try:
+        response = requests.get(FORECAST_URL, params=params, timeout=10)
+        response.raise_for_status()
+        return response.json()
+    except requests.exceptions.ConnectionError:
+        print("❌ Network error! Please check your internet connection.")
+        return None
+    except requests.exceptions.Timeout:
+        print("❌ Request timed out! Try again later.")
+        return None
+    except requests.exceptions.RequestException as e:
+        print(f"❌ Something went wrong: {e}")
+        return None
