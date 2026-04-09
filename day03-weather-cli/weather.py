@@ -40,3 +40,18 @@ def display_weather(weather):
     print(f"💨 Wind Speed   : {weather['wind_speed']} m/s")
     print(f"☁️  Description  : {weather['description'].capitalize()}")
     print("-" * 40)
+def main():
+    """Main function to run the Weather CLI."""
+    print("🌤️  PyToolkit Weather CLI")
+    print("=" * 40)
+    city = input("Enter city name: ").strip()
+    if not city:
+        print("❌ No city entered.")
+        return
+    print(f"\n⏳ Fetching weather for '{city}'...")
+    data = get_weather(city)
+    weather = parse_weather(data)
+    display_weather(weather)
+
+if __name__ == "__main__":
+    main()
