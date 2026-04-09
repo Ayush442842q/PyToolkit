@@ -1,3 +1,8 @@
+# PyToolkit - Day 03
+# Tool: Weather CLI
+# Author: Ayush442842q
+# Description: Fetches real-time weather data using OpenWeatherMap API
+
 import requests
 
 # API Configuration
