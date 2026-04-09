@@ -1,22 +1,40 @@
 # PyToolkit 🛠️
 
-A collection of useful Python utility scripts built daily.
+30 Python utility tools built in 30 days.
 
-## Tools
+## Progress Tracker
 
-| Day | Tool | Description | Status |
-|-----|------|-------------|--------|
-| 01 | File Organizer | Organizes files in a folder by type | ✅ Done |
-| 02 | Password Generator | Generates secure random passwords | ✅ Done |
-| 03 | Weather CLI | Coming soon... | 🔜 |
+| Day | Tool | Status |
+|-----|------|--------|
+| 01 | File Organizer | ✅ Done |
+| 02 | Password Generator | ✅ Done |
+| 03 | Weather CLI | ✅ Done |
+| 04 | Web Scraper | 🔜 Coming |
+| 05 | Expense Tracker | 🔜 Coming |
+| 06 | PDF Merger/Splitter | 🔜 Coming |
+| 07 | Image Resizer | 🔜 Coming |
+| 08 | URL Shortener | 🔜 Coming |
+| 09 | Email Sender Script | 🔜 Coming |
+| 10 | Todo CLI App | 🔜 Coming |
+| 11 | YouTube Downloader | 🔜 Coming |
+| 12 | Text to Speech | 🔜 Coming |
+| 13 | QR Code Generator | 🔜 Coming |
+| 14 | System Monitor Dashboard | 🔜 Coming |
+| 15 | Auto File Backup Tool | 🔜 Coming |
 
 ## Structure
-Each tool lives in its own folder with:
-- Main script
-- README with usage instructions
-- Unit tests
+PyToolkit/
+├── day01-file-organizer/
+├── day02-password-generator/
+├── day03-weather-cli/
+└── ...
 
-## Goals
-- 30 tools in 30 days
-- 20+ commits per day
-- Open source contributions
+## Requirements
+- Python 3.6+
+- See each day's folder for specific dependencies
+
+## Author
+Ayush442842q
+
+## Goal
+20+ commits per day · 30 tools · 30 days
