@@ -76,3 +76,27 @@ def get_forecast(city):
     except requests.exceptions.RequestException as e:
         print(f"❌ Something went wrong: {e}")
         return None
+def display_forecast(data):
+    """Displays 5-day weather forecast in a nice format."""
+    if not data or data.get("cod") != "200":
+        print("❌ Could not fetch forecast data.")
+        return
+
+    city = data["city"]["name"]
+    country = data["city"]["country"]
+    print(f"\n📅 5-Day Forecast for {city}, {country}")
+    print("=" * 40)
+
+    seen_dates = []
+    for item in data["list"]:
+        date = item["dt_txt"].split(" ")[0]
+        if date not in seen_dates:
+            seen_dates.append(date)
+            temp = item["main"]["temp"]
+            description = item["weather"][0]["description"]
+            humidity = item["main"]["humidity"]
+            print(f"📆 {date}")
+            print(f"   🌡️  Temp       : {temp}°C")
+            print(f"   💧 Humidity   : {humidity}%")
+            print(f"   ☁️  Condition  : {description.capitalize()}")
+            print("-" * 40)
