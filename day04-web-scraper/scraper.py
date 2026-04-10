@@ -63,6 +63,10 @@ def main():
     headlines = parse_headlines(html)
     display_headlines(headlines, limit)
 
+    save = input("\n💾 Save headlines to file? (y/n): ").lower()
+    if save == "y":
+        save_headlines(headlines[:limit])
+
 if __name__ == "__main__":
     main()
 
