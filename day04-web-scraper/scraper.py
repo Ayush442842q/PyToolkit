@@ -47,3 +47,21 @@ def display_headlines(headlines, limit=10):
         print(f"   🔗 {item['link']}")
 
     print("-" * 50)
+
+def main():
+    """Main function to run the web scraper."""
+    print("🕷️ Web Scraper - Hacker News Headlines")
+    print("-" * 50)
+
+    limit = int(input("How many headlines to show? (1-30): "))
+    if limit < 1 or limit > 30:
+        print("❌ Please enter a number between 1 and 30!")
+        return
+
+    print("\n⏳ Fetching headlines...")
+    html = get_page(BASE_URL)
+    headlines = parse_headlines(html)
+    display_headlines(headlines, limit)
+
+if __name__ == "__main__":
+    main()
