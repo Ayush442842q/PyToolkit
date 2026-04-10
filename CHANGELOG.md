@@ -2,6 +2,16 @@
 
 All notable changes to PyToolkit will be documented here.
 
+## Day 04 - Web Scraper
+- Added base configuration and imports
+- Added get_page function with error handling
+- Added parse_headlines function
+- Added display_headlines function
+- Added main function
+- Added save_headlines function
+- Added get_scores function
+- Added unit tests
+
 ---
 
 ## [Day 03] - Weather CLI 🌤️
