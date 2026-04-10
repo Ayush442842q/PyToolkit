@@ -79,3 +79,15 @@ def save_headlines(headlines, filename="headlines.txt"):
             f.write(f"{i}. {item['title']}\n")
             f.write(f"   {item['link']}\n\n")
     print(f"✅ Headlines saved to {filename}")
+def get_scores(html):
+    """Fetches upvote scores for each headline."""
+    if not html:
+        return []
+
+    soup = BeautifulSoup(html, "html.parser")
+    scores = []
+
+    for score in soup.select(".score"):
+        scores.append(score.text)
+
+    return scores
