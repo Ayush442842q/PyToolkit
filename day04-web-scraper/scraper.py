@@ -32,3 +32,18 @@ def parse_headlines(html):
         })
 
     return headlines
+
+def display_headlines(headlines, limit=10):
+    """Displays headlines in a numbered list."""
+    if not headlines:
+        print("❌ No headlines found!")
+        return
+
+    print(f"\n🔥 Top {limit} Headlines from Hacker News")
+    print("-" * 50)
+
+    for i, item in enumerate(headlines[:limit], 1):
+        print(f"\n{i}. {item['title']}")
+        print(f"   🔗 {item['link']}")
+
+    print("-" * 50)
