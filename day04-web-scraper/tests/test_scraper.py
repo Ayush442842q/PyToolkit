@@ -10,3 +10,10 @@ def test_parse_headlines_empty():
     print("✅ test_parse_headlines_empty passed!")
 
 test_parse_headlines_empty()
+
+def test_parse_headlines_returns_list():
+    result = parse_headlines(None)
+    assert isinstance(result, list)
+    print("✅ test_parse_headlines_returns_list passed!")
+
+test_parse_headlines_returns_list()
