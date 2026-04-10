@@ -65,3 +65,13 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+def save_headlines(headlines, filename="headlines.txt"):
+    """Saves headlines to a text file."""
+    with open(filename, "w", encoding="utf-8") as f:
+        f.write("Hacker News Headlines\n")
+        f.write("=" * 50 + "\n\n")
+        for i, item in enumerate(headlines, 1):
+            f.write(f"{i}. {item['title']}\n")
+            f.write(f"   {item['link']}\n\n")
+    print(f"✅ Headlines saved to {filename}")
