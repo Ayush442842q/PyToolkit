@@ -33,7 +33,7 @@ def parse_headlines(html):
 
     return headlines
 
-def display_headlines(headlines, limit=10):
+def display_headlines(headlines, scores=None, limit=10):
     """Displays headlines in a numbered list."""
     if not headlines:
         print("❌ No headlines found!")
@@ -43,11 +43,13 @@ def display_headlines(headlines, limit=10):
     print("-" * 50)
 
     for i, item in enumerate(headlines[:limit], 1):
+        score = scores[i-1] if scores and i-1 < len(scores) else "N/A"
         print(f"\n{i}. {item['title']}")
         print(f"   🔗 {item['link']}")
+        print(f"   ⬆️  {score}")
 
     print("-" * 50)
-
+    
 def main():
     """Main function to run the web scraper."""
     print("🕷️ Web Scraper - Hacker News Headlines")
@@ -79,6 +81,7 @@ def save_headlines(headlines, filename="headlines.txt"):
             f.write(f"{i}. {item['title']}\n")
             f.write(f"   {item['link']}\n\n")
     print(f"✅ Headlines saved to {filename}")
+
 def get_scores(html):
     """Fetches upvote scores for each headline."""
     if not html:
