@@ -9,7 +9,7 @@
 | 01 | File Organizer | ✅ Done |
 | 02 | Password Generator | ✅ Done |
 | 03 | Weather CLI | ✅ Done |
-| 04 | Web Scraper | 🔜 Coming |
+| 04 | Web Scraper | ✅ Done |
 | 05 | Expense Tracker | 🔜 Coming |
 | 06 | PDF Merger/Splitter | 🔜 Coming |
 | 07 | Image Resizer | 🔜 Coming |
