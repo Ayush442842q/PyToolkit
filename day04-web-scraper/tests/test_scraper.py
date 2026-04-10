@@ -17,3 +17,10 @@ def test_parse_headlines_returns_list():
     print("✅ test_parse_headlines_returns_list passed!")
 
 test_parse_headlines_returns_list()
+
+def test_display_headlines_empty():
+    result = display_headlines([])
+    assert result is None
+    print("✅ test_display_headlines_empty passed!")
+
+test_display_headlines_empty()
