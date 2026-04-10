@@ -49,7 +49,7 @@ def display_headlines(headlines, scores=None, limit=10):
         print(f"   ⬆️  {score}")
 
     print("-" * 50)
-    
+
 def main():
     """Main function to run the web scraper."""
     print("🕷️ Web Scraper - Hacker News Headlines")
@@ -63,7 +63,8 @@ def main():
     print("\n⏳ Fetching headlines...")
     html = get_page(BASE_URL)
     headlines = parse_headlines(html)
-    display_headlines(headlines, limit)
+    scores = get_scores(html)
+    display_headlines(headlines, scores, limit)
 
     save = input("\n💾 Save headlines to file? (y/n): ").lower()
     if save == "y":
