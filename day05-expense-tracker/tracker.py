@@ -71,3 +71,45 @@ def display_summary(expenses):
         print(f"  {cat:<20} ₹{total:.2f}")
     print("-" * 35)
     print(f"  {'Total':<20} ₹{get_total(expenses):.2f}")
+
+def main():
+    """Main function to run the expense tracker."""
+    print("💰 Expense Tracker")
+    print("-" * 30)
+    print("1. Add Expense")
+    print("2. View All Expenses")
+    print("3. View by Category")
+    print("4. View Summary")
+    print("5. Exit")
+
+    choice = input("\nChoose option (1-5): ")
+
+    if choice == "1":
+        print("\nCategories:", ", ".join(CATEGORIES))
+        category = input("Category: ")
+        amount = float(input("Amount (₹): "))
+        description = input("Description: ")
+        add_expense(category, amount, description)
+
+    elif choice == "2":
+        expenses = get_all_expenses()
+        display_expenses(expenses)
+
+    elif choice == "3":
+        category = input("Enter category: ")
+        expenses = get_all_expenses()
+        filtered = get_by_category(expenses, category)
+        display_expenses(filtered)
+
+    elif choice == "4":
+        expenses = get_all_expenses()
+        display_summary(expenses)
+
+    elif choice == "5":
+        print("👋 Goodbye!")
+
+    else:
+        print("❌ Invalid option!")
+
+if __name__ == "__main__":
+    main()
