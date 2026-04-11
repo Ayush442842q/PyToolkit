@@ -95,3 +95,22 @@ def get_scores(html):
         scores.append(score.text)
 
     return scores
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
