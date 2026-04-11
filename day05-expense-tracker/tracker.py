@@ -22,3 +22,13 @@ def add_expense(category, amount, description):
         writer = csv.writer(f)
         writer.writerow([date, category, amount, description])
     print(f"✅ Expense added: {category} - ₹{amount}")
+
+def get_all_expenses():
+    """Returns all expenses from the CSV file."""
+    initialize_file()
+    expenses = []
+    with open(DATA_FILE, "r", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            expenses.append(row)
+    return expenses
