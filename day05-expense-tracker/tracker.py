@@ -13,3 +13,12 @@ def initialize_file():
             writer = csv.writer(f)
             writer.writerow(["Date", "Category", "Amount", "Description"])
         print(f"✅ Created {DATA_FILE}")
+
+def add_expense(category, amount, description):
+    """Adds a new expense to the CSV file."""
+    initialize_file()
+    date = datetime.now().strftime("%Y-%m-%d")
+    with open(DATA_FILE, "a", newline="", encoding="utf-8") as f:
+        writer = csv.writer(f)
+        writer.writerow([date, category, amount, description])
+    print(f"✅ Expense added: {category} - ₹{amount}")
