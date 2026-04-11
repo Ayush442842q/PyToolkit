@@ -1,40 +1,25 @@
 # PyToolkit 🛠️
 
-30 Python utility tools built in 30 days.
+A collection of useful Python utility scripts built daily.
 
-## Progress Tracker
+## Tools
 
-| Day | Tool | Status |
-|-----|------|--------|
-| 01 | File Organizer | ✅ Done |
-| 02 | Password Generator | ✅ Done |
-| 03 | Weather CLI | ✅ Done |
-| 04 | Web Scraper | ✅ Done |
-| 05 | Expense Tracker | 🔜 Coming |
-| 06 | PDF Merger/Splitter | 🔜 Coming |
-| 07 | Image Resizer | 🔜 Coming |
-| 08 | URL Shortener | 🔜 Coming |
-| 09 | Email Sender Script | 🔜 Coming |
-| 10 | Todo CLI App | 🔜 Coming |
-| 11 | YouTube Downloader | 🔜 Coming |
-| 12 | Text to Speech | 🔜 Coming |
-| 13 | QR Code Generator | 🔜 Coming |
-| 14 | System Monitor Dashboard | 🔜 Coming |
-| 15 | Auto File Backup Tool | 🔜 Coming |
+| Day | Tool | Description | Status |
+|-----|------|-------------|--------|
+| 01 | File Organizer | Organizes files in a folder by type | ✅ Done |
+| 02 | Password Generator | Generates secure random passwords | ✅ Done |
+| 03 | Weather CLI | Fetches live weather from OpenWeatherMap | ✅ Done |
+| 04 | Web Scraper | Scrapes headlines from Hacker News | ✅ Done |
+| 05 | Expense Tracker | Track daily expenses with CSV storage | ✅ Done |
+| 06 | PDF Merger/Splitter | Coming soon... | 🔜 |
 
 ## Structure
-PyToolkit/
-├── day01-file-organizer/
-├── day02-password-generator/
-├── day03-weather-cli/
-└── ...
+Each tool lives in its own folder with:
+- Main script
+- README with usage instructions
+- Unit tests
 
-## Requirements
-- Python 3.6+
-- See each day's folder for specific dependencies
-
-## Author
-Ayush442842q
-
-## Goal
-30 tools
+## Goals
+- 30 tools in 30 days
+- 20+ commits per day
+- Open source contributions
