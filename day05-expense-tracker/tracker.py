@@ -53,3 +53,11 @@ def display_expenses(expenses):
         print(f"{e['Date']:<12} {e['Category']:<15} ₹{float(e['Amount']):<9.2f} {e['Description']}")
     print("-" * 55)
     print(f"💰 Total: ₹{get_total(expenses):.2f}")
+
+def get_summary(expenses):
+    """Returns a summary of expenses by category."""
+    summary = {}
+    for e in expenses:
+        cat = e["Category"]
+        summary[cat] = summary.get(cat, 0) + float(e["Amount"])
+    return summary
