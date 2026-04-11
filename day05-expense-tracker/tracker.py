@@ -36,3 +36,7 @@ def get_all_expenses():
 def get_total(expenses):
     """Returns total amount of all expenses."""
     return sum(float(e["Amount"]) for e in expenses)
+
+def get_by_category(expenses, category):
+    """Filters expenses by category."""
+    return [e for e in expenses if e["Category"].lower() == category.lower()]
