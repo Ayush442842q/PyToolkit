@@ -25,3 +25,16 @@ def test_get_by_category():
     print("✅ test_get_by_category passed!")
 
 test_get_by_category()
+
+def test_get_summary():
+    expenses = [
+        {"Amount": "100", "Category": "Food", "Date": "2026-04-01", "Description": "Lunch"},
+        {"Amount": "200", "Category": "Food", "Date": "2026-04-01", "Description": "Dinner"},
+        {"Amount": "150", "Category": "Transport", "Date": "2026-04-01", "Description": "Uber"},
+    ]
+    summary = get_summary(expenses)
+    assert summary["Food"] == 300.0
+    assert summary["Transport"] == 150.0
+    print("✅ test_get_summary passed!")
+
+test_get_summary()
