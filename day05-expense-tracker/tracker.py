@@ -32,3 +32,7 @@ def get_all_expenses():
         for row in reader:
             expenses.append(row)
     return expenses
+
+def get_total(expenses):
+    """Returns total amount of all expenses."""
+    return sum(float(e["Amount"]) for e in expenses)
