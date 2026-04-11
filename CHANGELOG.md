@@ -44,3 +44,14 @@ All notable changes to PyToolkit will be documented here.
 - `get_files()` — scans folder and returns list of files
 - `organize_files()` — moves files into subfolders
 - `get_file_count()` — counts files before organizing
+## Day 05 - Expense Tracker
+- Added imports and configuration
+- Added initialize_file function
+- Added add_expense function
+- Added get_all_expenses function
+- Added get_total function
+- Added get_by_category function
+- Added display_expenses function
+- Added get_summary and display_summary functions
+- Added main function with menu
+- Added unit tests
