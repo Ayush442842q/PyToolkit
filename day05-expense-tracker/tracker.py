@@ -61,3 +61,13 @@ def get_summary(expenses):
         cat = e["Category"]
         summary[cat] = summary.get(cat, 0) + float(e["Amount"])
     return summary
+
+def display_summary(expenses):
+    """Displays expense summary by category."""
+    summary = get_summary(expenses)
+    print("\n📊 Expense Summary by Category")
+    print("-" * 35)
+    for cat, total in sorted(summary.items(), key=lambda x: x[1], reverse=True):
+        print(f"  {cat:<20} ₹{total:.2f}")
+    print("-" * 35)
+    print(f"  {'Total':<20} ₹{get_total(expenses):.2f}")
