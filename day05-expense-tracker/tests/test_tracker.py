@@ -13,3 +13,15 @@ def test_get_total():
     print("✅ test_get_total passed!")
 
 test_get_total()
+
+def test_get_by_category():
+    expenses = [
+        {"Amount": "100", "Category": "Food", "Date": "2026-04-01", "Description": "Lunch"},
+        {"Amount": "200", "Category": "Transport", "Date": "2026-04-01", "Description": "Uber"},
+    ]
+    result = get_by_category(expenses, "Food")
+    assert len(result) == 1
+    assert result[0]["Category"] == "Food"
+    print("✅ test_get_by_category passed!")
+
+test_get_by_category()
