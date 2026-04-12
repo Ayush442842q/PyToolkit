@@ -52,3 +52,21 @@ def get_pdf_info(pdf_path):
         "encrypted": reader.is_encrypted
     }
     return info
+
+def extract_pages(pdf_path, page_numbers, output_path):
+    """Extracts specific pages from a PDF."""
+    if not os.path.exists(pdf_path):
+        print(f"❌ File not found: {pdf_path}")
+        return None
+    reader = PdfReader(pdf_path)
+    writer = PdfWriter()
+    total_pages = len(reader.pages)
+    for num in page_numbers:
+        if 1 <= num <= total_pages:
+            writer.add_page(reader.pages[num - 1])
+        else:
+            print(f"⚠️  Skipping invalid page number: {num}")
+    with open(output_path, "wb") as f:
+        writer.write(f)
+    print(f"✅ Extracted {len(page_numbers)} pages to: {output_path}")
+    return output_path
