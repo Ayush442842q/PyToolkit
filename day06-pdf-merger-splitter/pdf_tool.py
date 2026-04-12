@@ -131,3 +131,55 @@ def get_page_count(pdf_path):
     count = len(reader.pages)
     print(f"📃 {os.path.basename(pdf_path)} has {count} page(s).")
     return count
+
+def main():
+    """Main function to run the PDF Tool CLI."""
+    print("📄 PyToolkit PDF Merger/Splitter")
+    print("=" * 40)
+    print("1. Merge PDFs")
+    print("2. Split PDF")
+    print("3. Extract Pages")
+    print("4. Rotate Pages")
+    print("5. PDF Info")
+    print("6. Exit")
+    print("=" * 40)
+
+    choice = input("Choose option (1-6): ").strip()
+
+    if choice == "1":
+        files = input("Enter PDF paths separated by commas: ").strip().split(",")
+        files = [f.strip() for f in files]
+        output = input("Output file name (e.g. merged.pdf): ").strip()
+        merge_pdfs(files, output)
+
+    elif choice == "2":
+        pdf = input("Enter PDF path to split: ").strip()
+        folder = input("Output folder name: ").strip()
+        split_pdf(pdf, folder)
+
+    elif choice == "3":
+        pdf = input("Enter PDF path: ").strip()
+        pages = input("Enter page numbers to extract (e.g. 1,3,5): ").strip()
+        page_nums = [int(p.strip()) for p in pages.split(",")]
+        output = input("Output file name (e.g. extracted.pdf): ").strip()
+        extract_pages(pdf, page_nums, output)
+
+    elif choice == "4":
+        pdf = input("Enter PDF path: ").strip()
+        rotation = int(input("Rotation degrees (90, 180, 270): ").strip())
+        output = input("Output file name (e.g. rotated.pdf): ").strip()
+        rotate_pages(pdf, rotation, output)
+
+    elif choice == "5":
+        pdf = input("Enter PDF path: ").strip()
+        info = get_pdf_info(pdf)
+        display_info(info)
+
+    elif choice == "6":
+        print("👋 Goodbye!")
+
+    else:
+        print("❌ Invalid option. Please choose 1-6.")
+
+if __name__ == "__main__":
+    main()
