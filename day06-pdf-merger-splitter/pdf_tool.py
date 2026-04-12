@@ -38,3 +38,17 @@ def split_pdf(pdf_path, output_folder):
         output_files.append(output_path)
     print(f"✅ Split into {len(output_files)} pages in: {output_folder}")
     return output_files
+
+def get_pdf_info(pdf_path):
+    """Returns basic info about a PDF file."""
+    if not os.path.exists(pdf_path):
+        print(f"❌ File not found: {pdf_path}")
+        return None
+    reader = PdfReader(pdf_path)
+    info = {
+        "filename": os.path.basename(pdf_path),
+        "pages": len(reader.pages),
+        "size_kb": round(os.path.getsize(pdf_path) / 1024, 2),
+        "encrypted": reader.is_encrypted
+    }
+    return info
