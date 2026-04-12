@@ -121,3 +121,13 @@ def add_watermark(pdf_path, watermark_path, output_path):
         writer.write(f)
     print(f"✅ Watermark added and saved to: {output_path}")
     return output_path
+
+def get_page_count(pdf_path):
+    """Returns the number of pages in a PDF."""
+    if not os.path.exists(pdf_path):
+        print(f"❌ File not found: {pdf_path}")
+        return 0
+    reader = PdfReader(pdf_path)
+    count = len(reader.pages)
+    print(f"📃 {os.path.basename(pdf_path)} has {count} page(s).")
+    return count
