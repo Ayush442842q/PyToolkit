@@ -101,3 +101,23 @@ def rotate_pages(pdf_path, rotation, output_path):
         writer.write(f)
     print(f"✅ Rotated all pages by {rotation}° and saved to: {output_path}")
     return output_path
+
+def add_watermark(pdf_path, watermark_path, output_path):
+    """Adds a watermark to every page of a PDF."""
+    if not os.path.exists(pdf_path):
+        print(f"❌ File not found: {pdf_path}")
+        return None
+    if not os.path.exists(watermark_path):
+        print(f"❌ Watermark file not found: {watermark_path}")
+        return None
+    reader = PdfReader(pdf_path)
+    watermark_reader = PdfReader(watermark_path)
+    watermark_page = watermark_reader.pages[0]
+    writer = PdfWriter()
+    for page in reader.pages:
+        page.merge_page(watermark_page)
+        writer.add_page(page)
+    with open(output_path, "wb") as f:
+        writer.write(f)
+    print(f"✅ Watermark added and saved to: {output_path}")
+    return output_path
