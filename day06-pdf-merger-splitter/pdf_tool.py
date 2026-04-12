@@ -83,3 +83,21 @@ def display_info(info):
     print(f"💾 Size      : {info['size_kb']} KB")
     print(f"🔒 Encrypted : {'Yes' if info['encrypted'] else 'No'}")
     print("-" * 35)
+
+def rotate_pages(pdf_path, rotation, output_path):
+    """Rotates all pages in a PDF by given degrees (90, 180, 270)."""
+    if not os.path.exists(pdf_path):
+        print(f"❌ File not found: {pdf_path}")
+        return None
+    if rotation not in [90, 180, 270]:
+        print("❌ Rotation must be 90, 180, or 270 degrees.")
+        return None
+    reader = PdfReader(pdf_path)
+    writer = PdfWriter()
+    for page in reader.pages:
+        page.rotate(rotation)
+        writer.add_page(page)
+    with open(output_path, "wb") as f:
+        writer.write(f)
+    print(f"✅ Rotated all pages by {rotation}° and saved to: {output_path}")
+    return output_path
