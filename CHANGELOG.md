@@ -55,3 +55,15 @@ All notable changes to PyToolkit will be documented here.
 - Added get_summary and display_summary functions
 - Added main function with menu
 - Added unit tests
+
+## [Day 06] - PDF Merger/Splitter
+- Added merge_pdfs() to combine multiple PDFs
+- Added split_pdf() to split into individual pages
+- Added get_pdf_info() to view PDF metadata
+- Added extract_pages() to extract specific pages
+- Added display_info() for formatted output
+- Added rotate_pages() to rotate PDF pages
+- Added add_watermark() to stamp watermark on pages
+- Added get_page_count() utility function
+- Added main() CLI menu
+- Added unit tests for all edge cases
