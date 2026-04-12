@@ -70,3 +70,16 @@ def extract_pages(pdf_path, page_numbers, output_path):
         writer.write(f)
     print(f"✅ Extracted {len(page_numbers)} pages to: {output_path}")
     return output_path
+
+def display_info(info):
+    """Displays PDF info in a formatted way."""
+    if not info:
+        print("❌ No info to display.")
+        return
+    print("\n📄 PDF Information")
+    print("-" * 35)
+    print(f"📁 Filename  : {info['filename']}")
+    print(f"📃 Pages     : {info['pages']}")
+    print(f"💾 Size      : {info['size_kb']} KB")
+    print(f"🔒 Encrypted : {'Yes' if info['encrypted'] else 'No'}")
+    print("-" * 35)
