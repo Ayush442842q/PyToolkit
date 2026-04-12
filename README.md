@@ -11,7 +11,11 @@ A collection of useful Python utility scripts built daily.
 | 03 | Weather CLI | Fetches live weather from OpenWeatherMap | ✅ Done |
 | 04 | Web Scraper | Scrapes headlines from Hacker News | ✅ Done |
 | 05 | Expense Tracker | Track daily expenses with CSV storage | ✅ Done |
-| 06 | PDF Merger/Splitter | Coming soon... | 🔜 |
+| 06 | PDF Merger/Splitter | Merge, split, rotate and extract PDF pages | ✅ Done |
+| 07 | Image Resizer | Coming soon... | 🔜 |
+| 08 | URL Shortener | Coming soon... | 🔜 |
+| 09 | Email Sender Script | Coming soon... | 🔜 |
+| 10 | Todo CLI App | Coming soon... | 🔜 |
 
 ## Structure
 Each tool lives in its own folder with:
@@ -22,4 +26,7 @@ Each tool lives in its own folder with:
 ## Goals
 - 30 tools in 30 days
 - 20+ commits per day
-- Open source contributions
+- Open source and free to use
+
+## Author
+Ayush442842q
