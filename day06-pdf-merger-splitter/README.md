@@ -24,6 +24,56 @@ pip install PyPDF2
 python pdf_tool.py
 ```
 
+## Examples
+
+### Merge PDFs
+```python
+from pdf_tool import merge_pdfs
+
+merge_pdfs(["file1.pdf", "file2.pdf", "file3.pdf"], "merged.pdf")
+# ✅ Merged 3 PDFs into: merged.pdf
+```
+
+### Split PDF
+```python
+from pdf_tool import split_pdf
+
+split_pdf("document.pdf", "output_pages/")
+# ✅ Split into 5 pages in: output_pages/
+```
+
+### Extract Specific Pages
+```python
+from pdf_tool import extract_pages
+
+extract_pages("document.pdf", [1, 3, 5], "selected.pdf")
+# ✅ Extracted 3 pages to: selected.pdf
+```
+
+### Rotate Pages
+```python
+from pdf_tool import rotate_pages
+
+rotate_pages("document.pdf", 90, "rotated.pdf")
+# ✅ Rotated all pages by 90° and saved to: rotated.pdf
+```
+
+### Get PDF Info
+```python
+from pdf_tool import get_pdf_info, display_info
+
+info = get_pdf_info("document.pdf")
+display_info(info)
+
+# 📄 PDF Information
+# -----------------------------------
+# 📁 Filename  : document.pdf
+# 📃 Pages     : 10
+# 💾 Size      : 245.6 KB
+# 🔒 Encrypted : No
+# -----------------------------------
+```
+
 ## Functions
 | Function | Description |
 |----------|-------------|
