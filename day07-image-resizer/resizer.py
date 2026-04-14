@@ -64,3 +64,15 @@ def resize_by_percentage(image_path, percent, output_path):
     print(f"✅ Resized to {percent}% ({new_width}x{new_height}) and saved to: {output_path}")
     img.close()
     return output_path
+
+def crop_image(image_path, left, top, right, bottom, output_path):
+    """Crops an image to given coordinates."""
+    if not os.path.exists(image_path):
+        print(f"❌ File not found: {image_path}")
+        return None
+    img = Image.open(image_path)
+    cropped = img.crop((left, top, right, bottom))
+    cropped.save(output_path)
+    print(f"✅ Cropped image saved to: {output_path}")
+    img.close()
+    return output_path
