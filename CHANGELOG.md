@@ -67,3 +67,17 @@ All notable changes to PyToolkit will be documented here.
 - Added get_page_count() utility function
 - Added main() CLI menu
 - Added unit tests for all edge cases
+
+## [Day 07] - Image Resizer
+- Added get_image_info() to read image metadata
+- Added display_info() for formatted output
+- Added resize_image() for exact dimension resizing
+- Added resize_by_percentage() for proportional resizing
+- Added crop_image() to crop by coordinates
+- Added convert_format() to change image format
+- Added apply_grayscale() for grayscale filter
+- Added apply_blur() for Gaussian blur filter
+- Added rotate_image() to rotate by degrees
+- Added flip_image() for horizontal/vertical flip
+- Added main() CLI menu with 9 options
+- Added full unit test suite
