@@ -22,3 +22,20 @@ def test_invalid_url():
     print("✅ test_invalid_url passed!")
 
 test_invalid_url()
+
+def test_save_and_load_history():
+    test_data = [{"date": "2026-04-01 10:00", "original": "https://google.com", "shortened": "https://tinyurl.com/abc"}]
+    save_history(test_data)
+    loaded = load_history()
+    assert len(loaded) == 1
+    assert loaded[0]["original"] == "https://google.com"
+    print("✅ test_save_and_load_history passed!")
+
+test_save_and_load_history()
+
+def test_clear_history():
+    clear_history()
+    assert get_history_count() == 0
+    print("✅ test_clear_history passed!")
+
+test_clear_history()
