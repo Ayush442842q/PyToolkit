@@ -27,6 +27,51 @@ pip install Pillow
 python resizer.py
 ```
 
+## Examples
+
+### Resize Image
+```python
+from resizer import resize_image
+resize_image("photo.jpg", 800, 600, "resized.jpg")
+# ✅ Resized to 800x600 and saved to: resized.jpg
+```
+
+### Resize by Percentage
+```python
+from resizer import resize_by_percentage
+resize_by_percentage("photo.jpg", 50, "half.jpg")
+# ✅ Resized to 50% (400x300) and saved to: half.jpg
+```
+
+### Convert Format
+```python
+from resizer import convert_format
+convert_format("photo.jpg", "photo.png")
+# ✅ Converted and saved to: photo.png
+```
+
+### Apply Grayscale
+```python
+from resizer import apply_grayscale
+apply_grayscale("photo.jpg", "gray.jpg")
+# ✅ Grayscale image saved to: gray.jpg
+```
+
+### Get Image Info
+```python
+from resizer import get_image_info, display_info
+info = get_image_info("photo.jpg")
+display_info(info)
+# 🖼️  Image Information
+# -----------------------------------
+# 📁 Filename : photo.jpg
+# 🎨 Format   : JPEG
+# 🌈 Mode     : RGB
+# 📐 Size     : 1920 x 1080 px
+# 💾 Filesize : 512.4 KB
+# -----------------------------------
+```
+
 ## Functions
 | Function | Description |
 |----------|-------------|
