@@ -67,3 +67,12 @@ def display_history():
         print(f"   🔗 Original : {entry['original'][:50]}...")
         print(f"   ✂️  Shortened: {entry['shortened']}")
     print("-" * 60)
+
+def clear_history():
+    """Clears all URL history."""
+    save_history([])
+    print("✅ History cleared!")
+
+def get_history_count():
+    """Returns the number of URLs in history."""
+    return len(load_history())
