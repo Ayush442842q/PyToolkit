@@ -10,3 +10,7 @@ from datetime import datetime
 
 TINYURL_API = "https://tinyurl.com/api-create.php"
 HISTORY_FILE = "url_history.json"
+
+def is_valid_url(url):
+    """Checks if a URL is valid."""
+    return url.startswith("http://") or url.startswith("https://")
