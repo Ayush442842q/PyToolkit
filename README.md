@@ -12,7 +12,7 @@ A collection of useful Python utility scripts built daily.
 | 04 | Web Scraper | Scrapes headlines from Hacker News | ✅ Done |
 | 05 | Expense Tracker | Track daily expenses with CSV storage | ✅ Done |
 | 06 | PDF Merger/Splitter | Merge, split, rotate and extract PDF pages | ✅ Done |
-| 07 | Image Resizer | Coming soon... | 🔜 |
+| 07 | Image Resizer | Resize, crop, convert and filter images | ✅ Done |
 | 08 | URL Shortener | Coming soon... | 🔜 |
 | 09 | Email Sender Script | Coming soon... | 🔜 |
 | 10 | Todo CLI App | Coming soon... | 🔜 |
