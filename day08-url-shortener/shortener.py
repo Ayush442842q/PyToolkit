@@ -53,3 +53,17 @@ def add_to_history(original_url, short_url):
     history.append(entry)
     save_history(history)
     print(f"📝 Saved to history!")
+
+def display_history():
+    """Displays all shortened URLs from history."""
+    history = load_history()
+    if not history:
+        print("❌ No history found!")
+        return
+    print(f"\n📋 URL Shortener History ({len(history)} entries)")
+    print("-" * 60)
+    for i, entry in enumerate(history, 1):
+        print(f"\n{i}. [{entry['date']}]")
+        print(f"   🔗 Original : {entry['original'][:50]}...")
+        print(f"   ✂️  Shortened: {entry['shortened']}")
+    print("-" * 60)
