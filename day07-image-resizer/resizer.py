@@ -38,3 +38,15 @@ def display_info(info):
     print(f"📐 Size     : {info['width']} x {info['height']} px")
     print(f"💾 Filesize : {info['size_kb']} KB")
     print("-" * 35)
+
+def resize_image(image_path, width, height, output_path):
+    """Resizes an image to given dimensions."""
+    if not os.path.exists(image_path):
+        print(f"❌ File not found: {image_path}")
+        return None
+    img = Image.open(image_path)
+    resized = img.resize((width, height), Image.LANCZOS)
+    resized.save(output_path)
+    print(f"✅ Resized to {width}x{height} and saved to: {output_path}")
+    img.close()
+    return output_path
