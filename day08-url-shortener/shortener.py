@@ -29,3 +29,10 @@ def shorten_url(url):
     except requests.exceptions.RequestException as e:
         print(f"❌ Error shortening URL: {e}")
         return None
+
+def load_history():
+    """Loads URL history from JSON file."""
+    if not os.path.exists(HISTORY_FILE):
+        return []
+    with open(HISTORY_FILE, "r", encoding="utf-8") as f:
+        return json.load(f)
