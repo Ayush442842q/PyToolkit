@@ -113,3 +113,33 @@ def apply_blur(image_path, output_path, radius=2):
     print(f"✅ Blurred image saved to: {output_path}")
     img.close()
     return output_path
+
+def rotate_image(image_path, degrees, output_path):
+    """Rotates an image by given degrees."""
+    if not os.path.exists(image_path):
+        print(f"❌ File not found: {image_path}")
+        return None
+    img = Image.open(image_path)
+    rotated = img.rotate(degrees, expand=True)
+    rotated.save(output_path)
+    print(f"✅ Rotated {degrees}° and saved to: {output_path}")
+    img.close()
+    return output_path
+
+def flip_image(image_path, direction, output_path):
+    """Flips an image horizontally or vertically."""
+    if not os.path.exists(image_path):
+        print(f"❌ File not found: {image_path}")
+        return None
+    img = Image.open(image_path)
+    if direction.lower() == "horizontal":
+        flipped = ImageOps.mirror(img)
+    elif direction.lower() == "vertical":
+        flipped = ImageOps.flip(img)
+    else:
+        print("❌ Direction must be 'horizontal' or 'vertical'.")
+        return None
+    flipped.save(output_path)
+    print(f"✅ Flipped {direction} and saved to: {output_path}")
+    img.close()
+    return output_path
