@@ -36,3 +36,8 @@ def load_history():
         return []
     with open(HISTORY_FILE, "r", encoding="utf-8") as f:
         return json.load(f)
+
+def save_history(history):
+    """Saves URL history to JSON file."""
+    with open(HISTORY_FILE, "w", encoding="utf-8") as f:
+        json.dump(history, f, indent=4, ensure_ascii=False)
