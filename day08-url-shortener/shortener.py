@@ -14,3 +14,18 @@ HISTORY_FILE = "url_history.json"
 def is_valid_url(url):
     """Checks if a URL is valid."""
     return url.startswith("http://") or url.startswith("https://")
+
+def shorten_url(url):
+    """Shortens a URL using TinyURL API."""
+    if not is_valid_url(url):
+        print("❌ Invalid URL! Must start with http:// or https://")
+        return None
+    try:
+        response = requests.get(TINYURL_API, params={"url": url})
+        response.raise_for_status()
+        short_url = response.text.strip()
+        print(f"✅ Shortened: {short_url}")
+        return short_url
+    except requests.exceptions.RequestException as e:
+        print(f"❌ Error shortening URL: {e}")
+        return None
