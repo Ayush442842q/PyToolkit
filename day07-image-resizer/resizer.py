@@ -143,3 +143,85 @@ def flip_image(image_path, direction, output_path):
     print(f"✅ Flipped {direction} and saved to: {output_path}")
     img.close()
     return output_path
+
+def main():
+    """Main function to run the Image Resizer CLI."""
+    print("🖼️  PyToolkit Image Resizer")
+    print("=" * 40)
+    print("1. Resize to dimensions")
+    print("2. Resize by percentage")
+    print("3. Crop image")
+    print("4. Convert format")
+    print("5. Apply grayscale")
+    print("6. Apply blur")
+    print("7. Rotate image")
+    print("8. Flip image")
+    print("9. Image info")
+    print("0. Exit")
+    print("=" * 40)
+
+    choice = input("Choose option (0-9): ").strip()
+
+    if choice == "1":
+        path = input("Image path: ").strip()
+        w = int(input("Width (px): ").strip())
+        h = int(input("Height (px): ").strip())
+        out = input("Output path: ").strip()
+        resize_image(path, w, h, out)
+
+    elif choice == "2":
+        path = input("Image path: ").strip()
+        pct = int(input("Percentage (e.g. 50): ").strip())
+        out = input("Output path: ").strip()
+        resize_by_percentage(path, pct, out)
+
+    elif choice == "3":
+        path = input("Image path: ").strip()
+        l = int(input("Left: ").strip())
+        t = int(input("Top: ").strip())
+        r = int(input("Right: ").strip())
+        b = int(input("Bottom: ").strip())
+        out = input("Output path: ").strip()
+        crop_image(path, l, t, r, b, out)
+
+    elif choice == "4":
+        path = input("Image path: ").strip()
+        out = input("Output path (e.g. image.png): ").strip()
+        convert_format(path, out)
+
+    elif choice == "5":
+        path = input("Image path: ").strip()
+        out = input("Output path: ").strip()
+        apply_grayscale(path, out)
+
+    elif choice == "6":
+        path = input("Image path: ").strip()
+        out = input("Output path: ").strip()
+        radius = int(input("Blur radius (default 2): ").strip() or "2")
+        apply_blur(path, out, radius)
+
+    elif choice == "7":
+        path = input("Image path: ").strip()
+        deg = int(input("Degrees to rotate: ").strip())
+        out = input("Output path: ").strip()
+        rotate_image(path, deg, out)
+
+    elif choice == "8":
+        path = input("Image path: ").strip()
+        direction = input("Direction (horizontal/vertical): ").strip()
+        out = input("Output path: ").strip()
+        flip_image(path, direction, out)
+
+    elif choice == "9":
+        path = input("Image path: ").strip()
+        info = get_image_info(path)
+        display_info(info)
+
+    elif choice == "0":
+        print("👋 Goodbye!")
+
+    else:
+        print("❌ Invalid option.")
+
+if __name__ == "__main__":
+    main()
