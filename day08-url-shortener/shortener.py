@@ -86,3 +86,49 @@ def shorten_bulk(urls):
             add_to_history(url, short)
             results.append({"original": url, "shortened": short})
     return results
+
+def main():
+    """Main function to run the URL shortener."""
+    print("✂️  URL Shortener")
+    print("-" * 30)
+    print("1. Shorten a URL")
+    print("2. Shorten multiple URLs")
+    print("3. View history")
+    print("4. Clear history")
+    print("5. Exit")
+
+    choice = input("\nChoose option (1-5): ")
+
+    if choice == "1":
+        url = input("Enter URL: ").strip()
+        short = shorten_url(url)
+        if short:
+            add_to_history(url, short)
+
+    elif choice == "2":
+        print("Enter URLs one per line. Empty line to finish:")
+        urls = []
+        while True:
+            url = input().strip()
+            if not url:
+                break
+            urls.append(url)
+        results = shorten_bulk(urls)
+        print(f"\n✅ Shortened {len(results)} URLs!")
+
+    elif choice == "3":
+        display_history()
+
+    elif choice == "4":
+        confirm = input("Are you sure? (y/n): ")
+        if confirm.lower() == "y":
+            clear_history()
+
+    elif choice == "5":
+        print("👋 Goodbye!")
+
+    else:
+        print("❌ Invalid option!")
+
+if __name__ == "__main__":
+    main()
