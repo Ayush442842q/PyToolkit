@@ -9,3 +9,16 @@ def test_valid_url_https():
     print("✅ test_valid_url_https passed!")
 
 test_valid_url_https()
+
+def test_valid_url_http():
+    assert is_valid_url("http://example.com") == True
+    print("✅ test_valid_url_http passed!")
+
+test_valid_url_http()
+
+def test_invalid_url():
+    assert is_valid_url("not-a-url") == False
+    assert is_valid_url("www.google.com") == False
+    print("✅ test_invalid_url passed!")
+
+test_invalid_url()
