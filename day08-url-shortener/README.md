@@ -24,6 +24,32 @@ pip install requests
 python shortener.py
 ```
 
+## Examples
+
+### Shorten a URL
+```python
+from shortener import shorten_url, add_to_history
+short = shorten_url("https://www.google.com")
+# ✅ Shortened: https://tinyurl.com/xyz123
+add_to_history("https://www.google.com", short)
+# 📝 Saved to history!
+```
+
+### Bulk Shorten
+```python
+from shortener import shorten_bulk
+urls = ["https://google.com", "https://github.com"]
+results = shorten_bulk(urls)
+# ✅ Shortened 2 URLs!
+```
+
+### View History
+```python
+from shortener import display_history
+display_history()
+# 📋 URL Shortener History (2 entries)
+```
+
 ## Functions
 | Function | Description |
 |----------|-------------|
