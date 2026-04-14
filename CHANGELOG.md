@@ -81,3 +81,16 @@ All notable changes to PyToolkit will be documented here.
 - Added flip_image() for horizontal/vertical flip
 - Added main() CLI menu with 9 options
 - Added full unit test suite
+
+## [Day 08] - URL Shortener
+- Added is_valid_url() for URL validation
+- Added shorten_url() using TinyURL API
+- Added load_history() to read JSON history
+- Added save_history() to write JSON history
+- Added add_to_history() to track shortened URLs
+- Added display_history() for formatted output
+- Added clear_history() to reset history
+- Added get_history_count() helper
+- Added shorten_bulk() for multiple URLs
+- Added main() CLI menu with 5 options
+- Added full unit test suite
