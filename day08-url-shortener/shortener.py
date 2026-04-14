@@ -41,3 +41,15 @@ def save_history(history):
     """Saves URL history to JSON file."""
     with open(HISTORY_FILE, "w", encoding="utf-8") as f:
         json.dump(history, f, indent=4, ensure_ascii=False)
+
+def add_to_history(original_url, short_url):
+    """Adds a new entry to URL history."""
+    history = load_history()
+    entry = {
+        "date": datetime.now().strftime("%Y-%m-%d %H:%M"),
+        "original": original_url,
+        "shortened": short_url
+    }
+    history.append(entry)
+    save_history(history)
+    print(f"📝 Saved to history!")
