@@ -24,3 +24,17 @@ def get_image_info(image_path):
     }
     img.close()
     return info
+
+def display_info(info):
+    """Displays image info in a formatted way."""
+    if not info:
+        print("❌ No info to display.")
+        return
+    print("\n🖼️  Image Information")
+    print("-" * 35)
+    print(f"📁 Filename : {info['filename']}")
+    print(f"🎨 Format   : {info['format']}")
+    print(f"🌈 Mode     : {info['mode']}")
+    print(f"📐 Size     : {info['width']} x {info['height']} px")
+    print(f"💾 Filesize : {info['size_kb']} KB")
+    print("-" * 35)
