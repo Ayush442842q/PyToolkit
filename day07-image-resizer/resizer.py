@@ -1,5 +1,5 @@
 import os
-from PIL import Image
+from PIL import Image, ImageFilter
 
 # PyToolkit - Day 07
 # Tool: Image Resizer
@@ -74,5 +74,18 @@ def crop_image(image_path, left, top, right, bottom, output_path):
     cropped = img.crop((left, top, right, bottom))
     cropped.save(output_path)
     print(f"✅ Cropped image saved to: {output_path}")
+    img.close()
+    return output_path
+
+def convert_format(image_path, output_path):
+    """Converts an image to a different format based on output extension."""
+    if not os.path.exists(image_path):
+        print(f"❌ File not found: {image_path}")
+        return None
+    img = Image.open(image_path)
+    if img.mode == "RGBA" and not output_path.endswith(".png"):
+        img = img.convert("RGB")
+    img.save(output_path)
+    print(f"✅ Converted and saved to: {output_path}")
     img.close()
     return output_path
