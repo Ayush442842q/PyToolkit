@@ -1,5 +1,5 @@
 import os
-from PIL import Image, ImageFilter
+from PIL import Image, ImageFilter, ImageOps
 
 # PyToolkit - Day 07
 # Tool: Image Resizer
@@ -87,5 +87,29 @@ def convert_format(image_path, output_path):
         img = img.convert("RGB")
     img.save(output_path)
     print(f"✅ Converted and saved to: {output_path}")
+    img.close()
+    return output_path
+
+def apply_grayscale(image_path, output_path):
+    """Converts an image to grayscale."""
+    if not os.path.exists(image_path):
+        print(f"❌ File not found: {image_path}")
+        return None
+    img = Image.open(image_path)
+    gray = ImageOps.grayscale(img)
+    gray.save(output_path)
+    print(f"✅ Grayscale image saved to: {output_path}")
+    img.close()
+    return output_path
+
+def apply_blur(image_path, output_path, radius=2):
+    """Applies a blur filter to an image."""
+    if not os.path.exists(image_path):
+        print(f"❌ File not found: {image_path}")
+        return None
+    img = Image.open(image_path)
+    blurred = img.filter(ImageFilter.GaussianBlur(radius=radius))
+    blurred.save(output_path)
+    print(f"✅ Blurred image saved to: {output_path}")
     img.close()
     return output_path
