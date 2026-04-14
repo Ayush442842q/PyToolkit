@@ -76,3 +76,13 @@ def clear_history():
 def get_history_count():
     """Returns the number of URLs in history."""
     return len(load_history())
+
+def shorten_bulk(urls):
+    """Shortens multiple URLs at once."""
+    results = []
+    for url in urls:
+        short = shorten_url(url)
+        if short:
+            add_to_history(url, short)
+            results.append({"original": url, "shortened": short})
+    return results
