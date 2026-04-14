@@ -50,3 +50,17 @@ def resize_image(image_path, width, height, output_path):
     print(f"✅ Resized to {width}x{height} and saved to: {output_path}")
     img.close()
     return output_path
+
+def resize_by_percentage(image_path, percent, output_path):
+    """Resizes an image by a percentage of its original size."""
+    if not os.path.exists(image_path):
+        print(f"❌ File not found: {image_path}")
+        return None
+    img = Image.open(image_path)
+    new_width = int(img.width * percent / 100)
+    new_height = int(img.height * percent / 100)
+    resized = img.resize((new_width, new_height), Image.LANCZOS)
+    resized.save(output_path)
+    print(f"✅ Resized to {percent}% ({new_width}x{new_height}) and saved to: {output_path}")
+    img.close()
+    return output_path
