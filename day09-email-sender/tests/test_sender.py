@@ -2,7 +2,7 @@ import sys
 import os
 sys.path.insert(0, os.path.abspath(".."))
 
-from sender import is_valid_email, create_message
+from sender import is_valid_email, create_message, log_email, view_log
 
 def test_valid_email():
     assert is_valid_email("test@gmail.com") == True
@@ -27,3 +27,10 @@ def test_create_message():
     print("✅ test_create_message passed!")
 
 test_create_message()
+
+def test_log_email():
+    log_email("test@gmail.com", "Test Subject", "SUCCESS")
+    assert os.path.exists("email_log.txt")
+    print("✅ test_log_email passed!")
+
+test_log_email()
