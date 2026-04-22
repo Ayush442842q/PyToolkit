@@ -76,3 +76,17 @@ def log_email(recipient, subject, status):
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M")
         f.write(f"[{timestamp}] To: {recipient} | Subject: {subject} | Status: {status}\n")
     print(f"📝 Email logged!")
+
+def send_bulk_emails(sender_email, app_password, recipients, subject, body):
+    """Sends emails to multiple recipients."""
+    results = {"success": 0, "failed": 0}
+    for recipient in recipients:
+        success = send_email(sender_email, app_password, recipient, subject, body)
+        if success:
+            log_email(recipient, subject, "SUCCESS")
+            results["success"] += 1
+        else:
+            log_email(recipient, subject, "FAILED")
+            results["failed"] += 1
+    print(f"\n📊 Bulk send complete: {results['success']} sent, {results['failed']} failed")
+    return results
