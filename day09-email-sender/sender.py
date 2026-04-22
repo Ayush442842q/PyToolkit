@@ -27,3 +27,20 @@ def create_message(sender, recipient, subject, body):
     msg["Subject"] = subject
     msg.attach(MIMEText(body, "plain"))
     return msg
+
+def add_attachment(msg, filepath):
+    """Attaches a file to an email message."""
+    if not os.path.exists(filepath):
+        print(f"❌ Attachment not found: {filepath}")
+        return msg
+    with open(filepath, "rb") as f:
+        part = MIMEBase("application", "octet-stream")
+        part.set_payload(f.read())
+    encoders.encode_base64(part)
+    part.add_header(
+        "Content-Disposition",
+        f"attachment; filename={os.path.basename(filepath)}"
+    )
+    msg.attach(part)
+    print(f"📎 Attached: {os.path.basename(filepath)}")
+    return msg
