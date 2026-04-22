@@ -90,3 +90,19 @@ def send_bulk_emails(sender_email, app_password, recipients, subject, body):
             results["failed"] += 1
     print(f"\n📊 Bulk send complete: {results['success']} sent, {results['failed']} failed")
     return results
+
+def view_log():
+    """Displays the email log."""
+    if not os.path.exists(LOG_FILE):
+        print("❌ No log file found!")
+        return
+    print("\n📋 Email Log")
+    print("-" * 60)
+    with open(LOG_FILE, "r", encoding="utf-8") as f:
+        lines = f.readlines()
+    if not lines:
+        print("No emails logged yet.")
+    for line in lines:
+        print(line.strip())
+    print("-" * 60)
+    print(f"Total: {len(lines)} emails logged")
