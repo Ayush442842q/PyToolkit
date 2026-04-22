@@ -10,3 +10,11 @@ def test_valid_email():
     print("✅ test_valid_email passed!")
 
 test_valid_email()
+
+def test_invalid_email():
+    assert is_valid_email("notanemail") == False
+    assert is_valid_email("missing@dot") == False
+    assert is_valid_email("") == False
+    print("✅ test_invalid_email passed!")
+
+test_invalid_email()
