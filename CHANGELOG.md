@@ -94,3 +94,14 @@ All notable changes to PyToolkit will be documented here.
 - Added shorten_bulk() for multiple URLs
 - Added main() CLI menu with 5 options
 - Added full unit test suite
+
+## [Day 09] - Email Sender
+- Added is_valid_email() for email validation
+- Added create_message() to build email objects
+- Added add_attachment() to attach files
+- Added send_email() via Gmail SMTP
+- Added log_email() for tracking sent emails
+- Added send_bulk_emails() for multiple recipients
+- Added view_log() to display email history
+- Added main() CLI menu with 5 options
+- Added full unit test suite
