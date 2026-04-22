@@ -44,3 +44,28 @@ def add_attachment(msg, filepath):
     msg.attach(part)
     print(f"📎 Attached: {os.path.basename(filepath)}")
     return msg
+
+def send_email(sender_email, app_password, recipient, subject, body, attachment=None):
+    """Sends an email via Gmail SMTP."""
+    if not is_valid_email(sender_email):
+        print("❌ Invalid sender email!")
+        return False
+    if not is_valid_email(recipient):
+        print("❌ Invalid recipient email!")
+        return False
+    try:
+        msg = create_message(sender_email, recipient, subject, body)
+        if attachment:
+            msg = add_attachment(msg, attachment)
+        with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as server:
+            server.starttls()
+            server.login(sender_email, app_password)
+            server.send_message(msg)
+        print(f"✅ Email sent to {recipient}!")
+        return True
+    except smtplib.SMTPAuthenticationError:
+        print("❌ Authentication failed! Check your email and app password.")
+        return False
+    except Exception as e:
+        print(f"❌ Error sending email: {e}")
+        return False
