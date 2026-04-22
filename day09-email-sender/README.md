@@ -27,6 +27,44 @@ A Python script to send emails with attachments via Gmail SMTP.
 python sender.py
 ```
 
+## Examples
+
+### Send a Simple Email
+```python
+from sender import send_email
+send_email(
+    sender_email="you@gmail.com",
+    app_password="your_app_password",
+    recipient="friend@gmail.com",
+    subject="Hello!",
+    body="This email was sent with PyToolkit!"
+)
+# ✅ Email sent to friend@gmail.com!
+```
+
+### Send with Attachment
+```python
+from sender import send_email
+send_email(
+    sender_email="you@gmail.com",
+    app_password="your_app_password",
+    recipient="friend@gmail.com",
+    subject="Report",
+    body="Please find the report attached.",
+    attachment="report.pdf"
+)
+# 📎 Attached: report.pdf
+# ✅ Email sent to friend@gmail.com!
+```
+
+### Bulk Send
+```python
+from sender import send_bulk_emails
+recipients = ["a@gmail.com", "b@gmail.com", "c@gmail.com"]
+send_bulk_emails("you@gmail.com", "password", recipients, "Hello!", "Hi everyone!")
+# 📊 Bulk send complete: 3 sent, 0 failed
+```
+
 ## Functions
 | Function | Description |
 |----------|-------------|
