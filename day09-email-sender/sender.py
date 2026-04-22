@@ -106,3 +106,57 @@ def view_log():
         print(line.strip())
     print("-" * 60)
     print(f"Total: {len(lines)} emails logged")
+
+def main():
+    """Main function to run the email sender."""
+    print("📧 Email Sender")
+    print("-" * 30)
+    print("1. Send an email")
+    print("2. Send email with attachment")
+    print("3. Send bulk emails")
+    print("4. View email log")
+    print("5. Exit")
+
+    choice = input("\nChoose option (1-5): ")
+
+    sender = input("\nYour Gmail: ").strip()
+    password = input("Your App Password: ").strip()
+
+    if choice == "1":
+        recipient = input("Recipient email: ").strip()
+        subject = input("Subject: ").strip()
+        body = input("Message: ").strip()
+        success = send_email(sender, password, recipient, subject, body)
+        log_email(recipient, subject, "SUCCESS" if success else "FAILED")
+
+    elif choice == "2":
+        recipient = input("Recipient email: ").strip()
+        subject = input("Subject: ").strip()
+        body = input("Message: ").strip()
+        attachment = input("Attachment path: ").strip()
+        success = send_email(sender, password, recipient, subject, body, attachment)
+        log_email(recipient, subject, "SUCCESS" if success else "FAILED")
+
+    elif choice == "3":
+        print("Enter recipient emails one per line. Empty line to finish:")
+        recipients = []
+        while True:
+            email = input().strip()
+            if not email:
+                break
+            recipients.append(email)
+        subject = input("Subject: ").strip()
+        body = input("Message: ").strip()
+        send_bulk_emails(sender, password, recipients, subject, body)
+
+    elif choice == "4":
+        view_log()
+
+    elif choice == "5":
+        print("👋 Goodbye!")
+
+    else:
+        print("❌ Invalid option!")
+
+if __name__ == "__main__":
+    main()
