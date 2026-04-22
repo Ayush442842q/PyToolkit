@@ -18,3 +18,12 @@ def test_invalid_email():
     print("✅ test_invalid_email passed!")
 
 test_invalid_email()
+
+def test_create_message():
+    msg = create_message("sender@gmail.com", "recipient@gmail.com", "Test Subject", "Test Body")
+    assert msg["From"] == "sender@gmail.com"
+    assert msg["To"] == "recipient@gmail.com"
+    assert msg["Subject"] == "Test Subject"
+    print("✅ test_create_message passed!")
+
+test_create_message()
