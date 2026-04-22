@@ -14,7 +14,7 @@ A collection of useful Python utility scripts built daily.
 | 06 | PDF Merger/Splitter | Merge, split, rotate and extract PDF pages | ✅ Done |
 | 07 | Image Resizer | Resize, crop, convert and filter images | ✅ Done |
 | 08 | URL Shortener | Shorten URLs with history tracking | ✅ Done |
-| 09 | Email Sender Script | Coming soon... | 🔜 |
+| 09 | Email Sender | Send emails with attachments via Gmail | ✅ Done |
 | 10 | Todo CLI App | Coming soon... | 🔜 |
 
 ## Structure
