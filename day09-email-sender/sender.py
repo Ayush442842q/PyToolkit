@@ -69,3 +69,10 @@ def send_email(sender_email, app_password, recipient, subject, body, attachment=
     except Exception as e:
         print(f"❌ Error sending email: {e}")
         return False
+
+def log_email(recipient, subject, status):
+    """Logs sent emails to a text file."""
+    with open(LOG_FILE, "a", encoding="utf-8") as f:
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M")
+        f.write(f"[{timestamp}] To: {recipient} | Subject: {subject} | Status: {status}\n")
+    print(f"📝 Email logged!")
