@@ -18,3 +18,12 @@ LOG_FILE = "email_log.txt"
 def is_valid_email(email):
     """Checks if an email address is valid."""
     return "@" in email and "." in email.split("@")[-1]
+
+def create_message(sender, recipient, subject, body):
+    """Creates a basic email message."""
+    msg = MIMEMultipart()
+    msg["From"] = sender
+    msg["To"] = recipient
+    msg["Subject"] = subject
+    msg.attach(MIMEText(body, "plain"))
+    return msg
