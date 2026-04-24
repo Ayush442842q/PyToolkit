@@ -8,30 +8,3 @@ from datetime import datetime
 # Description: A full-featured command-line Todo app with JSON storage
 
 TODO_FILE = "todos.json"
-
-def load_todos():
-    """Loads todos from JSON file."""
-    if not os.path.exists(TODO_FILE):
-        return []
-    with open(TODO_FILE, "r", encoding="utf-8") as f:
-        return json.load(f)
-
-def save_todos(todos):
-    """Saves todos to JSON file."""
-    with open(TODO_FILE, "w", encoding="utf-8") as f:
-        json.dump(todos, f, indent=4)
-
-def add_todo(title, priority="medium"):
-    """Adds a new todo item."""
-    todos = load_todos()
-    todo = {
-        "id": len(todos) + 1,
-        "title": title,
-        "priority": priority.lower(),
-        "done": False,
-        "created_at": datetime.now().strftime("%Y-%m-%d %H:%M")
-    }
-    todos.append(todo)
-    save_todos(todos)
-    print(f"✅ Added: [{todo['id']}] {title} (Priority: {priority})")
-    return todo
