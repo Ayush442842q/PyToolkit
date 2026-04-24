@@ -66,3 +66,14 @@ def mark_done(todo_id):
             return True
     print(f"❌ Todo with ID {todo_id} not found.")
     return False
+
+def delete_todo(todo_id):
+    """Deletes a todo by ID."""
+    todos = load_todos()
+    new_todos = [t for t in todos if t["id"] != todo_id]
+    if len(new_todos) == len(todos):
+        print(f"❌ Todo with ID {todo_id} not found.")
+        return False
+    save_todos(new_todos)
+    print(f"🗑️  Deleted todo with ID: {todo_id}")
+    return True
