@@ -35,3 +35,21 @@ def add_todo(title, priority="medium"):
     save_todos(todos)
     print(f"✅ Added: [{todo['id']}] {title} (Priority: {priority})")
     return todo
+
+def list_todos(show_done=True):
+    """Lists all todos, optionally filtering out completed ones."""
+    todos = load_todos()
+    if not todos:
+        print("📭 No todos found! Add one with add_todo().")
+        return []
+    print("\n📋 Your Todo List")
+    print("=" * 55)
+    for todo in todos:
+        if not show_done and todo["done"]:
+            continue
+        status = "✅" if todo["done"] else "⬜"
+        priority_icon = {"high": "🔴", "medium": "🟡", "low": "🟢"}.get(todo["priority"], "🟡")
+        print(f"{status} [{todo['id']}] {priority_icon} {todo['title']}")
+        print(f"      Created: {todo['created_at']}")
+    print("=" * 55)
+    return todos
