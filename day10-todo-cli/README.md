@@ -21,8 +21,47 @@ A full-featured command-line Todo application with JSON storage.
 python todo.py
 ```
 
-## Storage
-Todos are saved in `todos.json` in the same directory.
+## Examples
+
+### Add a Todo
+```python
+from todo import add_todo
+add_todo("Buy groceries", "high")
+# ✅ Added: [1] Buy groceries (Priority: high)
+```
+
+### List Todos
+```python
+from todo import list_todos
+list_todos()
+# 📋 Your Todo List
+# =======================================================
+# ⬜ [1] 🔴 Buy groceries
+#       Created: 2024-01-15 10:30
+# ✅ [2] 🟡 Read book
+#       Created: 2024-01-15 09:00
+# =======================================================
+```
+
+### Mark as Done
+```python
+from todo import mark_done
+mark_done(1)
+# ✅ Marked as done: [1] Buy groceries
+```
+
+### Get Stats
+```python
+from todo import get_stats
+get_stats()
+# 📊 Todo Stats
+# ------------------------------
+# 📋 Total    : 5
+# ✅ Done     : 2
+# ⬜ Pending  : 3
+# 🔴 High Pri : 1
+# ------------------------------
+```
 
 ## Functions
 | Function | Description |
