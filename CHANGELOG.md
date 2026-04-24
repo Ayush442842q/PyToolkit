@@ -105,3 +105,16 @@ All notable changes to PyToolkit will be documented here.
 - Added view_log() to display email history
 - Added main() CLI menu with 5 options
 - Added full unit test suite
+
+## [Day 10] - Todo CLI App
+- Added load_todos() and save_todos() for JSON persistence
+- Added add_todo() with priority support (high/medium/low)
+- Added list_todos() with optional done filter
+- Added mark_done() to complete todos by ID
+- Added delete_todo() to remove todos by ID
+- Added edit_todo() to update todo titles
+- Added search_todos() to find todos by keyword
+- Added get_stats() for todo statistics
+- Added clear_done() to bulk remove completed todos
+- Added main() CLI menu with 9 options
+- Added full unit test suite with 9 test cases
