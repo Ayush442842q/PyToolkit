@@ -105,3 +105,28 @@ def search_todos(keyword):
         print(f"{status} [{todo['id']}] {todo['title']}")
     print("=" * 55)
     return results
+
+def get_stats():
+    """Returns stats about todos."""
+    todos = load_todos()
+    total = len(todos)
+    done = sum(1 for t in todos if t["done"])
+    pending = total - done
+    high = sum(1 for t in todos if t["priority"] == "high" and not t["done"])
+    print("\n📊 Todo Stats")
+    print("-" * 30)
+    print(f"📋 Total    : {total}")
+    print(f"✅ Done     : {done}")
+    print(f"⬜ Pending  : {pending}")
+    print(f"🔴 High Pri : {high}")
+    print("-" * 30)
+    return {"total": total, "done": done, "pending": pending, "high_priority": high}
+
+def clear_done():
+    """Removes all completed todos."""
+    todos = load_todos()
+    remaining = [t for t in todos if not t["done"]]
+    removed = len(todos) - len(remaining)
+    save_todos(remaining)
+    print(f"🧹 Cleared {removed} completed todo(s).")
+    return removed
