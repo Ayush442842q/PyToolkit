@@ -5,10 +5,10 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")
 import todo
 todo.TODO_FILE = "test_todos.json"
 
-from todo import add_todo, load_todos, save_todos, mark_done, delete_todo, search_todos, get_stats
+from todo import add_todo, load_todos, save_todos, mark_done, delete_todo, search_todos, get_stats, edit_todo, clear_done
 
 class TestTodo:
-    """Tests for Todo CLI App."""
+    """Full tests for Todo CLI App."""
 
     def setup(self):
         save_todos([])
@@ -70,6 +70,26 @@ class TestTodo:
         assert stats["pending"] == 1
         print("✅ test_get_stats passed!")
 
+    def test_edit_todo(self):
+        self.setup()
+        add_todo("Old title")
+        result = edit_todo(1, "New title")
+        assert result == True
+        todos = load_todos()
+        assert todos[0]["title"] == "New title"
+        print("✅ test_edit_todo passed!")
+
+    def test_clear_done(self):
+        self.setup()
+        add_todo("Task 1")
+        add_todo("Task 2")
+        mark_done(1)
+        removed = clear_done()
+        assert removed == 1
+        todos = load_todos()
+        assert len(todos) == 1
+        print("✅ test_clear_done passed!")
+
 if __name__ == "__main__":
     t = TestTodo()
     t.test_add_todo()
@@ -79,7 +99,8 @@ if __name__ == "__main__":
     t.test_delete_todo()
     t.test_search_todos()
     t.test_get_stats()
+    t.test_edit_todo()
+    t.test_clear_done()
     print("\n✅ All tests passed!")
-    # Cleanup
     if os.path.exists("test_todos.json"):
         os.remove("test_todos.json")
