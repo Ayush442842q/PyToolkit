@@ -90,3 +90,18 @@ def edit_todo(todo_id, new_title):
             return True
     print(f"❌ Todo with ID {todo_id} not found.")
     return False
+
+def search_todos(keyword):
+    """Searches todos by keyword in title."""
+    todos = load_todos()
+    results = [t for t in todos if keyword.lower() in t["title"].lower()]
+    if not results:
+        print(f"🔍 No todos found matching: '{keyword}'")
+        return []
+    print(f"\n🔍 Search results for '{keyword}':")
+    print("=" * 55)
+    for todo in results:
+        status = "✅" if todo["done"] else "⬜"
+        print(f"{status} [{todo['id']}] {todo['title']}")
+    print("=" * 55)
+    return results
