@@ -77,3 +77,16 @@ def delete_todo(todo_id):
     save_todos(new_todos)
     print(f"🗑️  Deleted todo with ID: {todo_id}")
     return True
+
+def edit_todo(todo_id, new_title):
+    """Edits the title of an existing todo."""
+    todos = load_todos()
+    for todo in todos:
+        if todo["id"] == todo_id:
+            old_title = todo["title"]
+            todo["title"] = new_title
+            save_todos(todos)
+            print(f"✏️  Updated [{todo_id}]: '{old_title}' → '{new_title}'")
+            return True
+    print(f"❌ Todo with ID {todo_id} not found.")
+    return False
