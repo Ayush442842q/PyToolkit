@@ -130,3 +130,54 @@ def clear_done():
     save_todos(remaining)
     print(f"🧹 Cleared {removed} completed todo(s).")
     return removed
+
+def main():
+    """Main function to run the Todo CLI."""
+    print("📝 PyToolkit Todo CLI")
+    print("=" * 40)
+    print("1. Add todo")
+    print("2. List all todos")
+    print("3. List pending todos")
+    print("4. Mark as done")
+    print("5. Delete todo")
+    print("6. Edit todo")
+    print("7. Search todos")
+    print("8. View stats")
+    print("9. Clear completed")
+    print("0. Exit")
+    print("=" * 40)
+
+    choice = input("Choose option (0-9): ").strip()
+
+    if choice == "1":
+        title = input("Todo title: ").strip()
+        priority = input("Priority (high/medium/low) [medium]: ").strip() or "medium"
+        add_todo(title, priority)
+    elif choice == "2":
+        list_todos()
+    elif choice == "3":
+        list_todos(show_done=False)
+    elif choice == "4":
+        todo_id = int(input("Todo ID to mark done: ").strip())
+        mark_done(todo_id)
+    elif choice == "5":
+        todo_id = int(input("Todo ID to delete: ").strip())
+        delete_todo(todo_id)
+    elif choice == "6":
+        todo_id = int(input("Todo ID to edit: ").strip())
+        new_title = input("New title: ").strip()
+        edit_todo(todo_id, new_title)
+    elif choice == "7":
+        keyword = input("Search keyword: ").strip()
+        search_todos(keyword)
+    elif choice == "8":
+        get_stats()
+    elif choice == "9":
+        clear_done()
+    elif choice == "0":
+        print("👋 Goodbye!")
+    else:
+        print("❌ Invalid option.")
+
+if __name__ == "__main__":
+    main()
