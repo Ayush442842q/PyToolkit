@@ -53,3 +53,16 @@ def list_todos(show_done=True):
         print(f"      Created: {todo['created_at']}")
     print("=" * 55)
     return todos
+
+def mark_done(todo_id):
+    """Marks a todo as completed by ID."""
+    todos = load_todos()
+    for todo in todos:
+        if todo["id"] == todo_id:
+            todo["done"] = True
+            todo["completed_at"] = datetime.now().strftime("%Y-%m-%d %H:%M")
+            save_todos(todos)
+            print(f"✅ Marked as done: [{todo_id}] {todo['title']}")
+            return True
+    print(f"❌ Todo with ID {todo_id} not found.")
+    return False
