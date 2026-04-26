@@ -16,3 +16,9 @@ def check_gtts():
         print("❌ gTTS is not installed!")
         print("   Run: pip install gtts")
         return False
+
+def ensure_output_folder(folder=OUTPUT_FOLDER):
+    """Creates the output folder if it doesn't exist."""
+    os.makedirs(folder, exist_ok=True)
+    print(f"📁 Output folder: {os.path.abspath(folder)}")
+    return folder
