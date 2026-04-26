@@ -1,5 +1,6 @@
 import sys
 import os
+import shutil
 sys.path.insert(0, os.path.abspath(".."))
 
 from tts import get_supported_languages, ensure_output_folder
@@ -18,3 +19,12 @@ def test_english_in_languages():
     print("✅ test_english_in_languages passed!")
 
 test_english_in_languages()
+
+def test_ensure_output_folder():
+    test_folder = "test_audio_temp"
+    ensure_output_folder(test_folder)
+    assert os.path.exists(test_folder)
+    shutil.rmtree(test_folder)
+    print("✅ test_ensure_output_folder passed!")
+
+test_ensure_output_folder()
