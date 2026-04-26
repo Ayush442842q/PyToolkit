@@ -1,6 +1,7 @@
 import os
 import subprocess
 import sys
+import json
 from urllib.parse import urlparse
 
 # Configuration
@@ -61,9 +62,21 @@ def download_audio(url, folder=DOWNLOAD_FOLDER):
     ]
     print(f"🎵 Downloading audio: {url}")
     result = subprocess.run(command, text=True)
+    return result.returncode == 0
+
+def get_video_info(url):
+    """Fetches video metadata without downloading."""
+    if not is_valid_url(url):
+        print("❌ Invalid URL!")
+        return None
+    command = ["yt-dlp", "--dump-json", "--no-playlist", url]
+    result = subprocess.run(command, capture_output=True, text=True)
     if result.returncode == 0:
-        print("✅ Audio downloaded successfully!")
-        return True
-    else:
-        print("❌ Download failed!")
-        return False
+        data = json.loads(result.stdout)
+        return {
+            "title": data.get("title", "Unknown"),
+            "duration": data.get("duration_string", "Unknown"),
+            "uploader": data.get("uploader", "Unknown"),
+            "views": data.get("view_count", 0),
+        }
+    return None
