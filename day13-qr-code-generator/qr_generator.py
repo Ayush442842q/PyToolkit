@@ -25,6 +25,32 @@ def ensure_output_folder(folder=OUTPUT_FOLDER):
     os.makedirs(folder, exist_ok=True)
     return folder
 
+def _detect_data_type(data):
+    if data.startswith("http://") or data.startswith("https://"):
+        return "URL"
+    elif data.startswith("mailto:"):
+        return "Email"
+    elif data.startswith("tel:"):
+        return "Phone"
+    elif data.startswith("WIFI:"):
+        return "WiFi"
+    elif "@" in data and "." in data:
+        return "Email Address"
+    else:
+        return "Plain Text"
+
+def get_qr_info(data):
+    return {"data": data, "length": len(data), "type": _detect_data_type(data)}
+
+def display_info(info):
+    """Displays QR code info in a formatted way."""
+    print("\n📋 QR Code Info")
+    print("-" * 40)
+    print(f"  Type   : {info['type']}")
+    print(f"  Length : {info['length']} characters")
+    print(f"  Data   : {info['data'][:60]}{'...' if len(info['data']) > 60 else ''}")
+    print("-" * 40)
+
 def generate_qr(data, filename=DEFAULT_FILENAME, folder=OUTPUT_FOLDER,
                 size=DEFAULT_SIZE, border=DEFAULT_BORDER):
     import qrcode
@@ -71,26 +97,3 @@ def generate_qr_bulk(data_list, folder=OUTPUT_FOLDER):
             results.append(path)
     print(f"\n✅ Generated {len(results)} QR codes in: {folder}")
     return results
-
-def get_qr_info(data):
-    """Returns metadata about what QR code would contain."""
-    return {
-        "data": data,
-        "length": len(data),
-        "type": _detect_data_type(data),
-    }
-
-def _detect_data_type(data):
-    """Detects the type of data in the QR code."""
-    if data.startswith("http://") or data.startswith("https://"):
-        return "URL"
-    elif data.startswith("mailto:"):
-        return "Email"
-    elif data.startswith("tel:"):
-        return "Phone"
-    elif data.startswith("WIFI:"):
-        return "WiFi"
-    elif "@" in data and "." in data:
-        return "Email Address"
-    else:
-        return "Plain Text"
