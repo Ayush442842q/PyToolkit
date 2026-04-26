@@ -28,7 +28,6 @@ def get_supported_languages():
     return SUPPORTED_LANGUAGES
 
 def display_languages():
-    """Prints all supported languages in a formatted table."""
     print("\n🌍 Supported Languages")
     print("-" * 30)
     for code, name in SUPPORTED_LANGUAGES.items():
@@ -70,3 +69,42 @@ def file_to_speech(file_path, lang=DEFAULT_LANGUAGE, folder=OUTPUT_FOLDER):
         return None
     filename = os.path.splitext(os.path.basename(file_path))[0] + ".mp3"
     return text_to_speech(text, filename=filename, lang=lang, folder=folder)
+
+def main():
+    """Main interactive menu for Text to Speech tool."""
+    if not check_gtts():
+        sys.exit(1)
+
+    print("\n🔊 Text to Speech Converter")
+    print("-" * 40)
+    print("1. Convert text to speech")
+    print("2. Convert text to speech (slow)")
+    print("3. Convert text file to speech")
+    print("4. Show supported languages")
+    print("5. Exit")
+    print("-" * 40)
+
+    choice = input("Choose an option (1-5): ").strip()
+
+    if choice == "1":
+        text = input("Enter text: ")
+        lang = input(f"Language code (default: {DEFAULT_LANGUAGE}): ").strip() or DEFAULT_LANGUAGE
+        filename = input("Output filename (default: output.mp3): ").strip() or DEFAULT_FILENAME
+        text_to_speech(text, filename=filename, lang=lang)
+    elif choice == "2":
+        text = input("Enter text: ")
+        lang = input(f"Language code (default: {DEFAULT_LANGUAGE}): ").strip() or DEFAULT_LANGUAGE
+        text_to_speech_slow(text, lang=lang)
+    elif choice == "3":
+        file_path = input("Enter text file path: ").strip()
+        lang = input(f"Language code (default: {DEFAULT_LANGUAGE}): ").strip() or DEFAULT_LANGUAGE
+        file_to_speech(file_path, lang=lang)
+    elif choice == "4":
+        display_languages()
+    elif choice == "5":
+        print("👋 Bye!")
+    else:
+        print("❌ Invalid option!")
+
+if __name__ == "__main__":
+    main()
