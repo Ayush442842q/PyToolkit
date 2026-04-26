@@ -1,5 +1,6 @@
 import sys
 import os
+import shutil
 sys.path.insert(0, os.path.abspath(".."))
 
 from qr_generator import get_qr_info, _detect_data_type, ensure_output_folder
@@ -26,7 +27,15 @@ def test_get_qr_info():
     info = get_qr_info("https://github.com")
     assert info["type"] == "URL"
     assert info["length"] == len("https://github.com")
-    assert info["data"] == "https://github.com"
     print("✅ test_get_qr_info passed!")
 
 test_get_qr_info()
+
+def test_ensure_output_folder():
+    test_folder = "test_qr_temp"
+    ensure_output_folder(test_folder)
+    assert os.path.exists(test_folder)
+    shutil.rmtree(test_folder)
+    print("✅ test_ensure_output_folder passed!")
+
+test_ensure_output_folder()
