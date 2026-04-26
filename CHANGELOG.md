@@ -1,3 +1,15 @@
+## Day 11 - YouTube Downloader
+- Added check_ytdlp function
+- Added is_valid_url function
+- Added ensure_download_folder function
+- Added download_video function
+- Added download_audio function
+- Added get_video_info function
+- Added display_info function
+- Added download_playlist function
+- Added main function with interactive menu
+- Added unit tests
+
 # Changelog
 
 All notable changes to PyToolkit will be documented here.
