@@ -1,3 +1,14 @@
+## Day 12 - Text to Speech
+- Added check_gtts function
+- Added ensure_output_folder function
+- Added text_to_speech core function
+- Added text_to_speech_slow function
+- Added file_to_speech function
+- Added supported languages dictionary
+- Added display_languages function
+- Added main interactive menu
+- Added unit tests
+
 ## Day 11 - YouTube Downloader
 - Added check_ytdlp function
 - Added is_valid_url function
