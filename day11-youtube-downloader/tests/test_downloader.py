@@ -1,5 +1,6 @@
 import sys
 import os
+import shutil
 sys.path.insert(0, os.path.abspath(".."))
 
 from downloader import is_valid_url, ensure_download_folder
@@ -16,3 +17,12 @@ def test_invalid_url():
     print("✅ test_invalid_url passed!")
 
 test_invalid_url()
+
+def test_ensure_download_folder():
+    test_folder = "test_downloads_temp"
+    ensure_download_folder(test_folder)
+    assert os.path.exists(test_folder)
+    shutil.rmtree(test_folder)
+    print("✅ test_ensure_download_folder passed!")
+
+test_ensure_download_folder()
