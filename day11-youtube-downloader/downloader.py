@@ -1,6 +1,7 @@
 import os
 import subprocess
 import sys
+from urllib.parse import urlparse
 
 # Configuration
 DOWNLOAD_FOLDER = "downloads"
@@ -15,3 +16,11 @@ def check_ytdlp():
         return False
     print(f"✅ yt-dlp version: {result.stdout.strip()}")
     return True
+
+def is_valid_url(url):
+    """Validates that the URL is a proper web URL."""
+    try:
+        result = urlparse(url)
+        return all([result.scheme, result.netloc])
+    except Exception:
+        return False
