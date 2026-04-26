@@ -28,3 +28,11 @@ def test_ensure_output_folder():
     print("✅ test_ensure_output_folder passed!")
 
 test_ensure_output_folder()
+
+def test_hindi_in_languages():
+    langs = get_supported_languages()
+    assert "hi" in langs
+    assert langs["hi"] == "Hindi"
+    print("✅ test_hindi_in_languages passed!")
+
+test_hindi_in_languages()
