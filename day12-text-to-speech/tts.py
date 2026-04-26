@@ -1,7 +1,6 @@
 import os
 import sys
 
-# Configuration
 OUTPUT_FOLDER = "audio_output"
 DEFAULT_LANGUAGE = "en"
 DEFAULT_FILENAME = "output.mp3"
@@ -17,11 +16,9 @@ def check_gtts():
 
 def ensure_output_folder(folder=OUTPUT_FOLDER):
     os.makedirs(folder, exist_ok=True)
-    print(f"📁 Output folder: {os.path.abspath(folder)}")
     return folder
 
 def text_to_speech(text, filename=DEFAULT_FILENAME, lang=DEFAULT_LANGUAGE, folder=OUTPUT_FOLDER):
-    """Converts text to speech and saves as mp3."""
     from gtts import gTTS
     if not text.strip():
         print("❌ Text cannot be empty!")
@@ -34,7 +31,6 @@ def text_to_speech(text, filename=DEFAULT_FILENAME, lang=DEFAULT_LANGUAGE, folde
     return output_path
 
 def text_to_speech_slow(text, filename="output_slow.mp3", lang=DEFAULT_LANGUAGE, folder=OUTPUT_FOLDER):
-    """Converts text to speech at a slower speed (good for learning)."""
     from gtts import gTTS
     if not text.strip():
         print("❌ Text cannot be empty!")
@@ -45,3 +41,17 @@ def text_to_speech_slow(text, filename="output_slow.mp3", lang=DEFAULT_LANGUAGE,
     tts.save(output_path)
     print(f"✅ Slow audio saved to: {output_path}")
     return output_path
+
+def file_to_speech(file_path, lang=DEFAULT_LANGUAGE, folder=OUTPUT_FOLDER):
+    """Reads a text file and converts its contents to speech."""
+    if not os.path.exists(file_path):
+        print(f"❌ File not found: {file_path}")
+        return None
+    with open(file_path, "r", encoding="utf-8") as f:
+        text = f.read()
+    if not text.strip():
+        print("❌ File is empty!")
+        return None
+    filename = os.path.splitext(os.path.basename(file_path))[0] + ".mp3"
+    print(f"📄 Converting file: {file_path}")
+    return text_to_speech(text, filename=filename, lang=lang, folder=folder)
