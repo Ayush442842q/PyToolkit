@@ -27,7 +27,6 @@ def ensure_output_folder(folder=OUTPUT_FOLDER):
 
 def generate_qr(data, filename=DEFAULT_FILENAME, folder=OUTPUT_FOLDER,
                 size=DEFAULT_SIZE, border=DEFAULT_BORDER):
-    """Generates a standard black-and-white QR code."""
     import qrcode
     if not data.strip():
         print("❌ Data cannot be empty!")
@@ -45,7 +44,6 @@ def generate_qr(data, filename=DEFAULT_FILENAME, folder=OUTPUT_FOLDER,
 
 def generate_qr_colored(data, fill_color="darkblue", back_color="white",
                         filename="qrcode_colored.png", folder=OUTPUT_FOLDER):
-    """Generates a colored QR code with custom colors."""
     import qrcode
     if not data.strip():
         print("❌ Data cannot be empty!")
@@ -62,17 +60,37 @@ def generate_qr_colored(data, fill_color="darkblue", back_color="white",
     return output_path
 
 def generate_qr_bulk(data_list, folder=OUTPUT_FOLDER):
-    """Generates multiple QR codes from a list of data strings."""
     if not data_list:
         print("❌ Data list is empty!")
         return []
-
     results = []
     for i, data in enumerate(data_list, 1):
         filename = f"qrcode_{i:03d}.png"
         path = generate_qr(data, filename=filename, folder=folder)
         if path:
             results.append(path)
-
     print(f"\n✅ Generated {len(results)} QR codes in: {folder}")
     return results
+
+def get_qr_info(data):
+    """Returns metadata about what QR code would contain."""
+    return {
+        "data": data,
+        "length": len(data),
+        "type": _detect_data_type(data),
+    }
+
+def _detect_data_type(data):
+    """Detects the type of data in the QR code."""
+    if data.startswith("http://") or data.startswith("https://"):
+        return "URL"
+    elif data.startswith("mailto:"):
+        return "Email"
+    elif data.startswith("tel:"):
+        return "Phone"
+    elif data.startswith("WIFI:"):
+        return "WiFi"
+    elif "@" in data and "." in data:
+        return "Email Address"
+    else:
+        return "Plain Text"
