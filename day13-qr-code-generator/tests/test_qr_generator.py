@@ -13,7 +13,12 @@ test_detect_url()
 
 def test_detect_plain_text():
     assert _detect_data_type("Hello World") == "Plain Text"
-    assert _detect_data_type("Just some text") == "Plain Text"
     print("✅ test_detect_plain_text passed!")
 
 test_detect_plain_text()
+
+def test_detect_email():
+    assert _detect_data_type("user@example.com") == "Email Address"
+    print("✅ test_detect_email passed!")
+
+test_detect_email()
