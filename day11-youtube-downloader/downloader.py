@@ -4,9 +4,7 @@ import sys
 import json
 from urllib.parse import urlparse
 
-# Configuration
 DOWNLOAD_FOLDER = "downloads"
-DEFAULT_FORMAT = "mp4"
 
 def check_ytdlp():
     result = subprocess.run(["yt-dlp", "--version"], capture_output=True, text=True)
@@ -53,12 +51,8 @@ def get_video_info(url):
     result = subprocess.run(command, capture_output=True, text=True)
     if result.returncode == 0:
         data = json.loads(result.stdout)
-        return {
-            "title": data.get("title", "Unknown"),
-            "duration": data.get("duration_string", "Unknown"),
-            "uploader": data.get("uploader", "Unknown"),
-            "views": data.get("view_count", 0),
-        }
+        return {"title": data.get("title", "Unknown"), "duration": data.get("duration_string", "Unknown"),
+                "uploader": data.get("uploader", "Unknown"), "views": data.get("view_count", 0)}
     return None
 
 def display_info(info):
@@ -74,17 +68,48 @@ def display_info(info):
     print("-" * 40)
 
 def download_playlist(url, folder=DOWNLOAD_FOLDER):
-    """Downloads all videos from a playlist."""
     if not is_valid_url(url):
         print("❌ Invalid URL!")
         return False
     ensure_download_folder(folder)
     command = ["yt-dlp", "-f", "best[ext=mp4]/best",
                "-o", os.path.join(folder, "%(playlist_index)s - %(title)s.%(ext)s"), url]
-    print(f"📋 Downloading playlist: {url}")
     result = subprocess.run(command, text=True)
-    if result.returncode == 0:
-        print("✅ Playlist downloaded successfully!")
-        return True
-    print("❌ Playlist download failed!")
-    return False
+    return result.returncode == 0
+
+def main():
+    """Main function — interactive YouTube downloader menu."""
+    if not check_ytdlp():
+        sys.exit(1)
+
+    print("\n🎬 YouTube Downloader")
+    print("-" * 40)
+    print("1. Download Video (mp4)")
+    print("2. Download Audio (mp3)")
+    print("3. Get Video Info")
+    print("4. Download Playlist")
+    print("5. Exit")
+    print("-" * 40)
+
+    choice = input("Choose an option (1-5): ").strip()
+
+    if choice == "5":
+        print("👋 Bye!")
+        return
+
+    url = input("Enter URL: ").strip()
+
+    if choice == "1":
+        download_video(url)
+    elif choice == "2":
+        download_audio(url)
+    elif choice == "3":
+        info = get_video_info(url)
+        display_info(info)
+    elif choice == "4":
+        download_playlist(url)
+    else:
+        print("❌ Invalid option!")
+
+if __name__ == "__main__":
+    main()
