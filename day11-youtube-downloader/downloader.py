@@ -36,7 +36,6 @@ def download_video(url, folder=DOWNLOAD_FOLDER):
     if not is_valid_url(url):
         print("❌ Invalid URL!")
         return False
-
     ensure_download_folder(folder)
     command = [
         "yt-dlp",
@@ -46,8 +45,24 @@ def download_video(url, folder=DOWNLOAD_FOLDER):
     ]
     print(f"⬇️  Downloading video: {url}")
     result = subprocess.run(command, text=True)
+    return result.returncode == 0
+
+def download_audio(url, folder=DOWNLOAD_FOLDER):
+    """Downloads only audio in mp3 format."""
+    if not is_valid_url(url):
+        print("❌ Invalid URL!")
+        return False
+    ensure_download_folder(folder)
+    command = [
+        "yt-dlp",
+        "-x", "--audio-format", "mp3",
+        "-o", os.path.join(folder, "%(title)s.%(ext)s"),
+        url
+    ]
+    print(f"🎵 Downloading audio: {url}")
+    result = subprocess.run(command, text=True)
     if result.returncode == 0:
-        print("✅ Video downloaded successfully!")
+        print("✅ Audio downloaded successfully!")
         return True
     else:
         print("❌ Download failed!")
