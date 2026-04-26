@@ -34,12 +34,8 @@ def generate_qr(data, filename=DEFAULT_FILENAME, folder=OUTPUT_FOLDER,
         return None
     ensure_output_folder(folder)
     output_path = os.path.join(folder, filename)
-    qr = qrcode.QRCode(
-        version=1,
-        error_correction=qrcode.constants.ERROR_CORRECT_H,
-        box_size=size,
-        border=border,
-    )
+    qr = qrcode.QRCode(version=1, error_correction=qrcode.constants.ERROR_CORRECT_H,
+                       box_size=size, border=border)
     qr.add_data(data)
     qr.make(fit=True)
     img = qr.make_image(fill_color="black", back_color="white")
@@ -56,15 +52,27 @@ def generate_qr_colored(data, fill_color="darkblue", back_color="white",
         return None
     ensure_output_folder(folder)
     output_path = os.path.join(folder, filename)
-    qr = qrcode.QRCode(
-        version=1,
-        error_correction=qrcode.constants.ERROR_CORRECT_H,
-        box_size=DEFAULT_SIZE,
-        border=DEFAULT_BORDER,
-    )
+    qr = qrcode.QRCode(version=1, error_correction=qrcode.constants.ERROR_CORRECT_H,
+                       box_size=DEFAULT_SIZE, border=DEFAULT_BORDER)
     qr.add_data(data)
     qr.make(fit=True)
     img = qr.make_image(fill_color=fill_color, back_color=back_color)
     img.save(output_path)
     print(f"✅ Colored QR code saved to: {output_path}")
     return output_path
+
+def generate_qr_bulk(data_list, folder=OUTPUT_FOLDER):
+    """Generates multiple QR codes from a list of data strings."""
+    if not data_list:
+        print("❌ Data list is empty!")
+        return []
+
+    results = []
+    for i, data in enumerate(data_list, 1):
+        filename = f"qrcode_{i:03d}.png"
+        path = generate_qr(data, filename=filename, folder=folder)
+        if path:
+            results.append(path)
+
+    print(f"\n✅ Generated {len(results)} QR codes in: {folder}")
+    return results
