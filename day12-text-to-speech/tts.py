@@ -5,6 +5,21 @@ OUTPUT_FOLDER = "audio_output"
 DEFAULT_LANGUAGE = "en"
 DEFAULT_FILENAME = "output.mp3"
 
+SUPPORTED_LANGUAGES = {
+    "en": "English",
+    "hi": "Hindi",
+    "fr": "French",
+    "de": "German",
+    "es": "Spanish",
+    "it": "Italian",
+    "ja": "Japanese",
+    "ko": "Korean",
+    "pt": "Portuguese",
+    "ru": "Russian",
+    "zh": "Chinese",
+    "ar": "Arabic",
+}
+
 def check_gtts():
     try:
         import gtts
@@ -17,6 +32,10 @@ def check_gtts():
 def ensure_output_folder(folder=OUTPUT_FOLDER):
     os.makedirs(folder, exist_ok=True)
     return folder
+
+def get_supported_languages():
+    """Returns a dict of supported language codes and names."""
+    return SUPPORTED_LANGUAGES
 
 def text_to_speech(text, filename=DEFAULT_FILENAME, lang=DEFAULT_LANGUAGE, folder=OUTPUT_FOLDER):
     from gtts import gTTS
@@ -43,7 +62,6 @@ def text_to_speech_slow(text, filename="output_slow.mp3", lang=DEFAULT_LANGUAGE,
     return output_path
 
 def file_to_speech(file_path, lang=DEFAULT_LANGUAGE, folder=OUTPUT_FOLDER):
-    """Reads a text file and converts its contents to speech."""
     if not os.path.exists(file_path):
         print(f"❌ File not found: {file_path}")
         return None
