@@ -10,3 +10,10 @@ def test_detect_url():
     print("✅ test_detect_url passed!")
 
 test_detect_url()
+
+def test_detect_plain_text():
+    assert _detect_data_type("Hello World") == "Plain Text"
+    assert _detect_data_type("Just some text") == "Plain Text"
+    print("✅ test_detect_plain_text passed!")
+
+test_detect_plain_text()
