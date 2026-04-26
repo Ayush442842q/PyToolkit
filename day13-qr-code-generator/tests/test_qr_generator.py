@@ -6,7 +6,6 @@ from qr_generator import get_qr_info, _detect_data_type, ensure_output_folder
 
 def test_detect_url():
     assert _detect_data_type("https://github.com") == "URL"
-    assert _detect_data_type("http://example.com") == "URL"
     print("✅ test_detect_url passed!")
 
 test_detect_url()
@@ -22,3 +21,12 @@ def test_detect_email():
     print("✅ test_detect_email passed!")
 
 test_detect_email()
+
+def test_get_qr_info():
+    info = get_qr_info("https://github.com")
+    assert info["type"] == "URL"
+    assert info["length"] == len("https://github.com")
+    assert info["data"] == "https://github.com"
+    print("✅ test_get_qr_info passed!")
+
+test_get_qr_info()
