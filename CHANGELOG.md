@@ -1,3 +1,15 @@
+## Day 13 - QR Code Generator
+- Added check_dependencies function
+- Added ensure_output_folder function
+- Added generate_qr core function
+- Added generate_qr_colored function
+- Added generate_qr_bulk function
+- Added _detect_data_type helper function
+- Added get_qr_info function
+- Added display_info function
+- Added main interactive menu
+- Added unit tests
+
 ## Day 12 - Text to Speech
 - Added check_gtts function
 - Added ensure_output_folder function
