@@ -36,3 +36,10 @@ def test_hindi_in_languages():
     print("✅ test_hindi_in_languages passed!")
 
 test_hindi_in_languages()
+
+def test_languages_count():
+    langs = get_supported_languages()
+    assert len(langs) == 12
+    print("✅ test_languages_count passed!")
+
+test_languages_count()
