@@ -17,8 +17,7 @@ def check_dependencies():
     except ImportError:
         missing.append("Pillow")
     if missing:
-        print(f"❌ Missing libraries: {', '.join(missing)}")
-        print(f"   Run: pip install {' '.join(missing)}")
+        print(f"❌ Missing: {', '.join(missing)} — Run: pip install {' '.join(missing)}")
         return False
     return True
 
@@ -28,16 +27,13 @@ def ensure_output_folder(folder=OUTPUT_FOLDER):
 
 def generate_qr(data, filename=DEFAULT_FILENAME, folder=OUTPUT_FOLDER,
                 size=DEFAULT_SIZE, border=DEFAULT_BORDER):
-    """Generates a QR code from given data and saves it as an image."""
+    """Generates a standard black-and-white QR code."""
     import qrcode
-
     if not data.strip():
         print("❌ Data cannot be empty!")
         return None
-
     ensure_output_folder(folder)
     output_path = os.path.join(folder, filename)
-
     qr = qrcode.QRCode(
         version=1,
         error_correction=qrcode.constants.ERROR_CORRECT_H,
@@ -46,8 +42,29 @@ def generate_qr(data, filename=DEFAULT_FILENAME, folder=OUTPUT_FOLDER,
     )
     qr.add_data(data)
     qr.make(fit=True)
-
     img = qr.make_image(fill_color="black", back_color="white")
     img.save(output_path)
     print(f"✅ QR code saved to: {output_path}")
+    return output_path
+
+def generate_qr_colored(data, fill_color="darkblue", back_color="white",
+                        filename="qrcode_colored.png", folder=OUTPUT_FOLDER):
+    """Generates a colored QR code with custom colors."""
+    import qrcode
+    if not data.strip():
+        print("❌ Data cannot be empty!")
+        return None
+    ensure_output_folder(folder)
+    output_path = os.path.join(folder, filename)
+    qr = qrcode.QRCode(
+        version=1,
+        error_correction=qrcode.constants.ERROR_CORRECT_H,
+        box_size=DEFAULT_SIZE,
+        border=DEFAULT_BORDER,
+    )
+    qr.add_data(data)
+    qr.make(fit=True)
+    img = qr.make_image(fill_color=fill_color, back_color=back_color)
+    img.save(output_path)
+    print(f"✅ Colored QR code saved to: {output_path}")
     return output_path
