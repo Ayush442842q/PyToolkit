@@ -6,24 +6,15 @@ DEFAULT_LANGUAGE = "en"
 DEFAULT_FILENAME = "output.mp3"
 
 SUPPORTED_LANGUAGES = {
-    "en": "English",
-    "hi": "Hindi",
-    "fr": "French",
-    "de": "German",
-    "es": "Spanish",
-    "it": "Italian",
-    "ja": "Japanese",
-    "ko": "Korean",
-    "pt": "Portuguese",
-    "ru": "Russian",
-    "zh": "Chinese",
-    "ar": "Arabic",
+    "en": "English", "hi": "Hindi", "fr": "French",
+    "de": "German", "es": "Spanish", "it": "Italian",
+    "ja": "Japanese", "ko": "Korean", "pt": "Portuguese",
+    "ru": "Russian", "zh": "Chinese", "ar": "Arabic",
 }
 
 def check_gtts():
     try:
         import gtts
-        print("✅ gTTS is available!")
         return True
     except ImportError:
         print("❌ gTTS is not installed! Run: pip install gtts")
@@ -34,8 +25,15 @@ def ensure_output_folder(folder=OUTPUT_FOLDER):
     return folder
 
 def get_supported_languages():
-    """Returns a dict of supported language codes and names."""
     return SUPPORTED_LANGUAGES
+
+def display_languages():
+    """Prints all supported languages in a formatted table."""
+    print("\n🌍 Supported Languages")
+    print("-" * 30)
+    for code, name in SUPPORTED_LANGUAGES.items():
+        print(f"  {code:<6} → {name}")
+    print("-" * 30)
 
 def text_to_speech(text, filename=DEFAULT_FILENAME, lang=DEFAULT_LANGUAGE, folder=OUTPUT_FOLDER):
     from gtts import gTTS
@@ -71,5 +69,4 @@ def file_to_speech(file_path, lang=DEFAULT_LANGUAGE, folder=OUTPUT_FOLDER):
         print("❌ File is empty!")
         return None
     filename = os.path.splitext(os.path.basename(file_path))[0] + ".mp3"
-    print(f"📄 Converting file: {file_path}")
     return text_to_speech(text, filename=filename, lang=lang, folder=folder)
