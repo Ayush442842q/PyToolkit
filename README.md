@@ -18,7 +18,8 @@ A collection of useful Python utility scripts built daily.
 | 10 | Todo CLI App | Full CRUD todo app with SQLite | ✅ Done |
 | 11 | YouTube Downloader | Downloads videos and audio with yt-dlp | ✅ Done |
 | 12 | Text to Speech | Converts text to mp3 audio in 12 languages | ✅ Done |
-| 13 | QR Code Generator | Coming soon... | 🔜 |
+| 13 | QR Code Generator | Generates QR codes for URLs, text and more | ✅ Done |
+| 14 | System Monitor | Coming soon... | 🔜 |
 
 ## Structure
 Each tool lives in its own folder with:
