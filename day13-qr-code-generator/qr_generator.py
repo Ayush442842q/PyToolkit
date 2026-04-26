@@ -43,7 +43,6 @@ def get_qr_info(data):
     return {"data": data, "length": len(data), "type": _detect_data_type(data)}
 
 def display_info(info):
-    """Displays QR code info in a formatted way."""
     print("\n📋 QR Code Info")
     print("-" * 40)
     print(f"  Type   : {info['type']}")
@@ -97,3 +96,50 @@ def generate_qr_bulk(data_list, folder=OUTPUT_FOLDER):
             results.append(path)
     print(f"\n✅ Generated {len(results)} QR codes in: {folder}")
     return results
+
+def main():
+    """Main interactive menu for QR Code Generator."""
+    if not check_dependencies():
+        sys.exit(1)
+
+    print("\n📱 QR Code Generator")
+    print("-" * 40)
+    print("1. Generate QR code (black & white)")
+    print("2. Generate QR code (colored)")
+    print("3. Generate QR codes in bulk")
+    print("4. Show QR code info")
+    print("5. Exit")
+    print("-" * 40)
+
+    choice = input("Choose an option (1-5): ").strip()
+
+    if choice == "1":
+        data = input("Enter data (URL, text, email...): ").strip()
+        filename = input("Output filename (default: qrcode.png): ").strip() or DEFAULT_FILENAME
+        generate_qr(data, filename=filename)
+    elif choice == "2":
+        data = input("Enter data: ").strip()
+        fill = input("Fill color (default: darkblue): ").strip() or "darkblue"
+        back = input("Background color (default: white): ").strip() or "white"
+        generate_qr_colored(data, fill_color=fill, back_color=back)
+    elif choice == "3":
+        print("Enter data items (one per line). Type 'done' when finished:")
+        items = []
+        while True:
+            line = input(f"  Item {len(items)+1}: ").strip()
+            if line.lower() == "done":
+                break
+            if line:
+                items.append(line)
+        generate_qr_bulk(items)
+    elif choice == "4":
+        data = input("Enter data to analyze: ").strip()
+        info = get_qr_info(data)
+        display_info(info)
+    elif choice == "5":
+        print("👋 Bye!")
+    else:
+        print("❌ Invalid option!")
+
+if __name__ == "__main__":
+    main()
