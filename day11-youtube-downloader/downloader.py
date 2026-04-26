@@ -24,3 +24,9 @@ def is_valid_url(url):
         return all([result.scheme, result.netloc])
     except Exception:
         return False
+
+def ensure_download_folder(folder=DOWNLOAD_FOLDER):
+    """Creates the download folder if it doesn't exist."""
+    os.makedirs(folder, exist_ok=True)
+    print(f"📁 Download folder: {os.path.abspath(folder)}")
+    return folder
